@@ -1,22 +1,22 @@
 'use strict';
-const board = ['', '', '',
-               '', '', '',
-               '', '', '',
+const board = ['-', '-', '-',
+               '-', '-', '-',
+               '-', '-', '-',
              ];
 
 const player1 = 'X';
 const player2 = 'O';
-const currentPlayer = '';
+const currentPlayer = 'x';
 
 const togglePlayer = function () {
   if (this.currentPlayer === 'X') {
     return this.player2;
   } else {
-    return this.player1;
+    return this.currentPlayer;
   }
 };
 
-const threeInARow= function (player, cellOne, cellTwo, cellThree) {
+const threeInARow = function (player, cellOne, cellTwo, cellThree) {
   return (cellOne === player) && (cellTwo === player) && (cellThree === player);
 };
 
@@ -43,7 +43,7 @@ const winnerIs = function (player) {
 
 const getWinner = function () {
   if (winnerIs(player1)) {
-    return "x";
+    return 'x';
   } else if (winnerIs(player2)) {
     return 'O';
   } else {
@@ -51,8 +51,30 @@ const getWinner = function () {
   }
 };
 
-module.export = {
+let spotTaken = false;
+
+const yourMove = function () {
+    for (let i = 0; i < board.length; i++) {
+      if (board[i] !== '-') {
+        spotTaken = true;
+      } else if (board[i] === '-') {
+        spotTaken = false;
+      }
+    }
+
+  };
+
+module.exports = {
+  board,
+  player1,
+  player2,
+  threeInARow,
+  winRows,
+  winColumn,
+  winDiag,
   getWinner,
+  winnerIs,
   currentPlayer,
   togglePlayer,
+  yourMove,
 };
