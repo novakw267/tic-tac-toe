@@ -1,5 +1,6 @@
 'use strict';
 
+//setting the board structure
 const board = [0, 1, 2,
                3, 4, 5,
                6, 7, 8,
@@ -10,31 +11,42 @@ const board = [0, 1, 2,
 //                '', '', '',
 //              ];
 
+//declaring the win conditions
 const winConditions = [
 [0, 1, 2], [3, 4, 5], [6, 7, 8], //rows
 [0, 3, 6], [1, 4, 7], [2, 5, 8], //columns
 [0, 4, 8], [2, 4, 6], //diagnol
 ];
 
-// const player1 = 'X';
-//
-// const player2 = 'O';
+
+// const player = {
+//   symbol: 'X'
+// };
 
 const player = {
-    symbol: 'X',
-    };
+  symbol: 'X'
+};
 
+const player1 = 'X';
+
+const player2 = 'O';
+
+const currentPlayer = 'X';
+
+//const player1 = 'X';
+//const player2 = 'O';
+
+//swapping players and symbol
 const togglePlayer = function () {
-   if (this.player === 'X')
-    return player.symbol = 'O';
-   }
-   else {
-    return player.symbol = 'X';
-   }
+ if (currentPlayer === 'X') {
+   return this.player2;
+} else if (currentPlayer === 'O') {
+   return this.currentPlayer;
+}
 
+};
 
- };
-
+//declaring three in a row
 const threeInARow = function (player, cellOne, cellTwo, cellThree) {
      if ((cellOne === player) && (cellTwo === player) && (cellThree === player)) {
        console.log(player + ' ' + 'Wins!');
@@ -42,21 +54,22 @@ const threeInARow = function (player, cellOne, cellTwo, cellThree) {
 
     };
 
+//declaring
 const winRow = function (player) {
-  return threeInARow(player, board[0]), (board[1]), (board[2]) ||
-         threeInARow(player, board[3]), (board[4]), (board[5]) ||
-         threeInARow(player, board[6]), (board[7]), (board[8]);
+  return threeInARow(player, board[0], board[1], board[2]) ||
+         threeInARow(player, board[3], board[4], board[5]) ||
+         threeInARow(player, board[6], board[7], board[8]);
 };
 
 const winColum = function (player) {
-  return threeInARow(player, board[0]), (board[3]), (board[6]) ||
-         threeInARow(player, board[1]), (board[4]), (board[7]) ||
-         threeInARow(player, board[2]), (board[5]), (board[8]);
+  return threeInARow(player, board[0], board[3], board[6]) ||
+         threeInARow(player, board[1], board[4], board[7]) ||
+         threeInARow(player, board[2], board[5], board[8]);
 };
 
 const winDiag = function (player) {
-  return threeInARow(player, board[0]), (board[4]), (board[8]) ||
-         threeInARow(player, board[2]), (board[4]), (board[6]);
+  return threeInARow(player, board[0], board[4], board[8]) ||
+         threeInARow(player, board[2], board[4], board[6]);
 };
 
 const winnerIs = function (player) {
@@ -69,9 +82,9 @@ const winnerIs = function (player) {
 };
 
 const getWinner = function () {
-  if (winnerIs(player) === true) {
+  if (winnerIs(player1) === true) {
     return ('Winner is X');
-  } else if (winnerIs(player) === true) {
+  } else if (winnerIs(player2) === true) {
     return ('Winner is O');
   } else { return null;}
 
@@ -84,7 +97,7 @@ const printBoard = function (board) {
 };
 
 const turn = function (player, move, board) {
-  board[move] = player.symbol;
+  board[move] = player.smyb;
   if (getWinner(board) !== -1) {
     console.log(getWinner());
   }
@@ -115,15 +128,15 @@ const turn = function (player, move, board) {
 // };
 
 printBoard(board);
-turn(player, 4, board);
+turn(player1, 4, board);
 printBoard(board);
-turn(player, 7, board);
+turn(player2, 7, board);
 printBoard(board);
-turn(player, 5, board);
+turn(player1, 5, board);
 printBoard(board);
-turn(player, 8, board);
+turn(player2, 8, board);
 printBoard(board);
-turn(player, 3, board);
+turn(player1, 3, board);
 printBoard(board);
 module.exports = {
   printBoard,
