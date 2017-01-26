@@ -11,37 +11,36 @@ const board = [0, 1, 2,
 //              ];
 
 const winConditions = [
-[0, 1, 2], [3, 4, 5,], [6, 7, 8], //rows
-[0, 3, 6], [1, 4, 7,], [2, 5, 8], //columns
-[0, 4, 8], [2, 4, 6,] //diagnol
+[0, 1, 2], [3, 4, 5], [6, 7, 8], //rows
+[0, 3, 6], [1, 4, 7], [2, 5, 8], //columns
+[0, 4, 8], [2, 4, 6], //diagnol
 ];
 
 // const player1 = 'X';
 //
 // const player2 = 'O';
 
-
 const player = {
     symbol: 'X',
-};
+    };
+
+const togglePlayer = function () {
+   if (this.player === 'X')
+    return player.symbol = 'O';
+   }
+   else {
+    return player.symbol = 'X';
+   }
 
 
-// const togglePlayer = function () {
-//    if (this.player === 'X')
-//      this.player = 'O';
-//    }
-//    else {
-//      this.player = 'X';
-//    }
-//  };
-
-
+ };
 
 const threeInARow = function (player, cellOne, cellTwo, cellThree) {
-    if ((cellOne === player) && (cellTwo === player) && (cellThree === player)) {
-        console.log(player + ' ' + "Wins!");
-    }
-};
+     if ((cellOne === player) && (cellTwo === player) && (cellThree === player)) {
+       console.log(player + ' ' + 'Wins!');
+      }
+
+    };
 
 const winRow = function (player) {
   return threeInARow(player, board[0]), (board[1]), (board[2]) ||
@@ -66,6 +65,7 @@ const winnerIs = function (player) {
   } else {
     return false;
   }
+
 };
 
 const getWinner = function () {
@@ -74,9 +74,8 @@ const getWinner = function () {
   } else if (winnerIs(player) === true) {
     return ('Winner is O');
   } else { return null;}
+
 };
-
-
 
 const printBoard = function (board) {
   for (let i = 0; i < board.length; i += 3) {
@@ -93,8 +92,6 @@ const turn = function (player, move, board) {
 
 // const newGame = [];
 //
-
-
 //
 // const toggleTurn = function () {
 //   if (this.player === '1'){
