@@ -11,21 +11,57 @@ const winConditions = [
 [0, 4, 8], [2, 4, 6] //diagnol
 ];
 
-const players = [
-   '1',
-   '2',
- ];
+const player1 = {
+  symbol: 'X'
+};
+
+const player2 = {
+  symbol: 'O'
+};
+
+const togglePlayer = function () {
+   if (this.player === 'X') {
+     this.player = 'O';
+   }
+   else {
+     this.player = 'X';
+   }
+ };
 
 const threeInARow = function (player, cellOne, cellTwo, cellThree) {
     return (cellOne === player) && (cellTwo === player) && (cellThree === player);
 };
-}
 
-const winRows = function (player) {
-  return threeInARow
-}
+const winRow = function (player) {
+  return threeInARow(player, board[0]), (board[1]), (board[2]) ||
+         threeInARow(player, board[3]), (board[4]), (board[5]) ||
+         threeInARow(player, board[6]), (board[7]), (board[8]);
+};
 
+const winColum = function (player) {
+  return  threeInARow(player, board[0]), (board[3]), (board[6]) ||
+          threeInARow(player, board[1]), (board[4]), (board[7]) ||
+          threeInARow(player, board[2]), (board[5]), (board[8]);
+};
 
+const winDiag = function (player) {
+  return   threeInARow(player, board[0]), (board[4]), (board[8]) ||
+           threeInARow(player, board[2]), (board[4]), (board[6]);
+};
+
+const winnerIs = function (player) {
+  return winRow(player.symbol) || winColum(player.symbol) || winDiag(player.symbol);
+};
+
+const getWinner = function () {
+  if (winnerIs (player1)) {
+    return ('Winner is X');
+  }
+  else if (winnerIs(player2)) {
+    return ('Winner is O');
+  }
+  else { return -1;}
+};
 
 
 
@@ -35,22 +71,17 @@ const printBoard = function(board) {
   }
 };
 
-const turn = function (player, move) {
-  if (player === 1) {
-    board[move] = 'X';
-  } else {
-    board[move] = 'O';
+const turn = function (player, move, board) {
+  board[move]=player.symbol;
+  if (getWinner(board) !== -1) {
+    console.log(getWinner());
   }
 };
 
 // const newGame = [];
 //
 
-//
-// const turn = {
-//   player: '1, 2',
-//   token: 'x, o',
-// };
+
 //
 // const toggleTurn = function () {
 //   if (this.player === '1'){
@@ -75,19 +106,20 @@ const turn = function (player, move) {
 // };
 
 printBoard(board);
-turn(1, 4);
+turn(player1, 4, board);
 printBoard(board);
-turn(2, 7);
+turn(player2, 7, board);
 printBoard(board);
-turn(1, 5);
+turn(player1, 5, board);
 printBoard(board);
-turn(2, 8);
+turn(player2, 8, board);
 printBoard(board);
-turn(1, 3);
+turn(player1, 3, board);
 printBoard(board);
-checkWin('x');
-
 module.exports = {
   printBoard,
-  checkWin,
+  winnerIs,
+  togglePlayer,
+  winConditions,
+ getWinner,
 };
