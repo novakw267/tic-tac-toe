@@ -61,16 +61,14 @@ const yourMove = function () {
         spotTaken = true;
       } else if (board[i] === '') {
          spotTaken = false;
-      }
-
-  }
-      if (spotTaken === true){
+      } else if (spotTaken === true){
         console.log('Please try again');
       } else {
         turn++;
       }
+    }
 
-    };
+};
 
 module.exports = {
   board,
