@@ -8,6 +8,7 @@ const board = ['', '', '',
 const player1 = 'X';
 const player2 = 'O';
 const currentPlayer = 'X';
+let turn = currentPlayer.board;
 
 const togglePlayer = function () {
   if (this.currentPlayer === 'X') {
@@ -59,11 +60,17 @@ const yourMove = function () {
       if (board[i] !== '') {
         spotTaken = true;
       } else if (board[i] === '') {
-        spotTaken = false;
+         spotTaken = false;
       }
-    }
 
-  };
+  }
+      if (spotTaken === true){
+        console.log('Please try again');
+      } else {
+        turn++;
+      }
+
+    };
 
 module.exports = {
   board,
@@ -77,5 +84,7 @@ module.exports = {
   winnerIs,
   currentPlayer,
   togglePlayer,
+  turn,
+  spotTaken,
   yourMove,
 };
