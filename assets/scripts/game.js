@@ -12,6 +12,16 @@ let newBoard = ['', '', '',
 
 let fullBoard = false;
 
+const spotTaken = function (element) {
+   return element !== '';
+};
+
+const boardFull = function () {
+  if (board.every(spotTaken)) {
+    fullBoard = true;
+  }
+};
+
 const player1 = 'X';
 const player2 = 'O';
 let currentPlayer = 'X';
@@ -44,15 +54,15 @@ const winRows = function (currentPlayer) {
 };
 
 const winColumn = function (currentPlayer) {
-  if (threeInARow(currentPlayer, board[0], board[3], board[6]),
-         threeInARow(currentPlayer, board[1], board[4], board[7]),
+  if (threeInARow(currentPlayer, board[0], board[3], board[6]) ||
+         threeInARow(currentPlayer, board[1], board[4], board[7]) ||
          threeInARow(currentPlayer, board[2], board[5], board[8])) {
          console.log('Great job ' + currentPlayer + ' you win!');
     }
 };
 
 const winDiag = function (currentPlayer) {
-  if (threeInARow(currentPlayer, board[0], board[4], board[8]),
+  if (threeInARow(currentPlayer, board[0], board[4], board[8]) ||
          threeInARow(currentPlayer, board[2], board[4], board[6])) {
            console.log('Great job ' + currentPlayer + ' you win!');
          }
@@ -62,26 +72,22 @@ const winnerIs = function (currentPlayer) {
   return winRows(currentPlayer) || winColumn(currentPlayer) || winDiag(currentPlayer);
 };
 
-const tieGame = function () {
+let tieGame = function (fullBoard) {
   if (fullBoard === true && winRows(currentPlayer) === false && winColumn(currentPlayer) === false && winDiag(currentPlayer) === false) {
-   return console.log('Game is a tie, try again.');
-}
-  {
-    return reset();
-  }
-
+  tieGame = true;
+   }
 };
 
 const getWinner = function () {
-  if (winnerIs(player1)) {
+  if (tieGame()) {
+    console.log('Game is a tie, try again.');
+  }  else if (winnerIs(player1)) {
     return currentPlayer;
   } else if (winnerIs(player2)) {
     return currentPlayer;
-  } else {
-    tieGame(fullBoard);
   }
+  reset();
 };
-
 
 
 const yourMove = function (board, move) {
@@ -112,8 +118,10 @@ console.log(board);
 yourMove(board, 7);
 console.log(getWinner(currentPlayer));
 console.log(tieGame());
+
 module.exports = {
   board,
+  boardFull,
   player1,
   player2,
   threeInARow,
@@ -123,6 +131,7 @@ module.exports = {
   winDiag,
   getWinner,
   winnerIs,
+  tieGame,
   currentPlayer,
   togglePlayer,
   yourMove,
