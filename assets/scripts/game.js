@@ -126,6 +126,7 @@ console.log(getWinner(currentPlayer));
 module.exports = {
   board,
   boardFull,
+  fullBoard,
   player1,
   player2,
   threeInARow,
