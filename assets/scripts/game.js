@@ -26,8 +26,6 @@ const player1 = 'X';
 const player2 = 'O';
 let currentPlayer = 'X';
 
-//let turn = currentPlayer.board;
-
 const togglePlayer = function () {
   if (currentPlayer === 'X') {
     currentPlayer = 'O';
@@ -76,14 +74,12 @@ const winnerIs = function (currentPlayer) {
   return winRows(currentPlayer) || winColumn(currentPlayer) || winDiag(currentPlayer);
 };
 
-let tieGame = function (boardFull, currentPlayer) {
-    if (fullBoard === true && winRows(currentPlayer) === false && winColumn(currentPlayer) === false && winDiag(currentPlayer) === false) {
-        tieGame = true;
-   }
+let tieGame = function () {
+       return board.every(spotTaken);
 };
 
 const getWinner = function () {
-  if (tieGame(fullBoard, currentPlayer)) {
+  if (tieGame(fullBoard)) {
     console.log('Game is a tie, try again.');
   }
     else if (winnerIs(player1)) {
@@ -122,6 +118,7 @@ console.log(board);
 yourMove(board, 8);
 console.log(board);
 yourMove(board, 7);
+console.log(board);
 console.log(getWinner(currentPlayer));
 module.exports = {
   board,
