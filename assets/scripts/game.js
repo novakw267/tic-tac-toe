@@ -1,12 +1,13 @@
 'use strict';
-const board = ['-', '-', '-',
-               '-', '-', '-',
-               '-', '-', '-',
+
+const board = ['', '', '',
+               '', '', '',
+               '', '', '',
              ];
 
 const player1 = 'X';
 const player2 = 'O';
-const currentPlayer = 'x';
+const currentPlayer = 'X';
 
 const togglePlayer = function () {
   if (this.currentPlayer === 'X') {
@@ -43,7 +44,7 @@ const winnerIs = function (player) {
 
 const getWinner = function () {
   if (winnerIs(player1)) {
-    return 'x';
+    return 'X';
   } else if (winnerIs(player2)) {
     return 'O';
   } else {
@@ -55,9 +56,9 @@ let spotTaken = false;
 
 const yourMove = function () {
     for (let i = 0; i < board.length; i++) {
-      if (board[i] !== '-') {
+      if (board[i] !== '') {
         spotTaken = true;
-      } else if (board[i] === '-') {
+      } else if (board[i] === '') {
         spotTaken = false;
       }
     }
