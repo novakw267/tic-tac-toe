@@ -7,14 +7,14 @@ const board = ['', '', '',
 
 const player1 = 'X';
 const player2 = 'O';
-const currentPlayer = 'X';
-let turn = currentPlayer.board;
+let currentPlayer = 'X';
+//let turn = currentPlayer.board;
 
 const togglePlayer = function () {
-  if (this.currentPlayer === 'X') {
-    return this.player2;
+  if (currentPlayer === 'X') {
+    currentPlayer = 'O';
   } else {
-    return this.currentPlayer;
+   currentPlayer = 'X';
   }
 };
 
@@ -56,19 +56,21 @@ const getWinner = function () {
 let spotTaken = false;
 
 const yourMove = function () {
+  let j;
     for (let i = 0; i < board.length; i++) {
       if (board[i] !== '') {
         spotTaken = true;
       } else if (board[i] === '') {
          spotTaken = false;
-      } else if (spotTaken === true){
-        console.log('Please try again');
-      } else {
-        turn++;
       }
     }
-
-};
+    if (spotTaken === true){
+        console.log('Please try again');
+      } else {
+        board[j] = currentPlayer;
+        togglePlayer();
+        }
+    };
 
 module.exports = {
   board,
@@ -82,7 +84,6 @@ module.exports = {
   winnerIs,
   currentPlayer,
   togglePlayer,
-  turn,
   spotTaken,
   yourMove,
 };
