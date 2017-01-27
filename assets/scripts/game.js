@@ -1,9 +1,16 @@
 'use strict';
 
-const board = ['', '', '',
+let board = ['', '', '',
                '', '', '',
                '', '', '',
              ];
+
+let newBoard = ['', '', '',
+               '', '', '',
+               '', '', '',
+                ];
+
+let fullBoard = false;
 
 const player1 = 'X';
 const player2 = 'O';
@@ -16,6 +23,11 @@ const togglePlayer = function () {
   } else if (currentPlayer === 'O'){
    currentPlayer = 'X';
  }
+};
+
+const reset = function () {
+  fullBoard = false;
+  board = newBoard;
 };
 
 const threeInARow = function (player, cellOne, cellTwo, cellThree) {
@@ -50,13 +62,27 @@ const winnerIs = function (currentPlayer) {
   return winRows(currentPlayer) || winColumn(currentPlayer) || winDiag(currentPlayer);
 };
 
+const tieGame = function () {
+  if (fullBoard === true && winRows(currentPlayer) === false && winColumn(currentPlayer) === false && winDiag(currentPlayer) === false) {
+   return console.log('Game is a tie, try again.');
+}
+  {
+    return reset();
+  }
+
+};
+
 const getWinner = function () {
   if (winnerIs(player1)) {
     return currentPlayer;
   } else if (winnerIs(player2)) {
     return currentPlayer;
+  } else {
+    tieGame(fullBoard);
   }
 };
+
+
 
 const yourMove = function (board, move) {
       if (board[move] !== '') {
@@ -67,22 +93,31 @@ const yourMove = function (board, move) {
       }
     };
 
-yourMove(board, 5);
-console.log(board);
-yourMove(board, 2);
-console.log(board);
-yourMove(board, 3);
+yourMove(board, 0);
 console.log(board);
 yourMove(board, 1);
 console.log(board);
+yourMove(board, 2);
+console.log(board);
+yourMove(board, 5);
+console.log(board);
+yourMove(board, 3);
+console.log(board);
+yourMove(board, 6);
+console.log(board);
 yourMove(board, 4);
 console.log(board);
+yourMove(board, 8);
+console.log(board);
+yourMove(board, 7);
 console.log(getWinner(currentPlayer));
+console.log(tieGame());
 module.exports = {
   board,
   player1,
   player2,
   threeInARow,
+  newBoard,
   winRows,
   winColumn,
   winDiag,
