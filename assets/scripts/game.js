@@ -39,8 +39,8 @@ const winDiag = function (player) {
          threeInARow(player, board[2], board[4], board[6]);
 };
 
-const winnerIs = function (player) {
-  return winRows(player) || winColumn(player) || winDiag(player);
+const winnerIs = function (currentPlayer) {
+  return winRows(currentPlayer) || winColumn(currentPlayer) || winDiag(currentPlayer);
 };
 
 const getWinner = function () {
@@ -53,25 +53,26 @@ const getWinner = function () {
   }
 };
 
-let spotTaken = false;
-
-const yourMove = function () {
-  let j;
-    for (let i = 0; i < board.length; i++) {
-      if (board[i] !== '') {
-        spotTaken = true;
-      } else if (board[i] === '') {
-         spotTaken = false;
-      }
-    }
-    if (spotTaken === true){
+const yourMove = function (board, move) {
+      if (board[move] !== '') {
         console.log('Please try again');
-      } else {
-        board[j] = currentPlayer;
+      } else if (board[move] === '') {
+        board[move] = currentPlayer;
         togglePlayer();
-        }
+      }
     };
 
+yourMove(board, 5);
+console.log(board);
+yourMove(board, 2);
+console.log(board);
+yourMove(board, 3);
+console.log(board);
+yourMove(board, 1);
+console.log(board);
+yourMove(board, 4);
+console.log(board);
+console.log(getWinner());
 module.exports = {
   board,
   player1,
@@ -84,6 +85,5 @@ module.exports = {
   winnerIs,
   currentPlayer,
   togglePlayer,
-  spotTaken,
   yourMove,
 };
