@@ -13,30 +13,37 @@ let currentPlayer = 'X';
 const togglePlayer = function () {
   if (currentPlayer === 'X') {
     currentPlayer = 'O';
-  } else {
+  } else if (currentPlayer === 'O'){
    currentPlayer = 'X';
-  }
+ }
 };
 
 const threeInARow = function (player, cellOne, cellTwo, cellThree) {
   return (cellOne === player) && (cellTwo === player) && (cellThree === player);
 };
 
-const winRows = function (player) {
-  return threeInARow(player, board[0], board[1], board[2]),
-         threeInARow(player, board[3], board[4], board[5]),
-         threeInARow(player, board[6], board[7], board[8]);
+const winRows = function (currentPlayer) {
+  if (threeInARow(currentPlayer, board[0], board[1], board[2])||
+         threeInARow(currentPlayer, board[3], board[4], board[5])||
+         threeInARow(currentPlayer, board[6], board[7], board[8])) {
+
+         console.log('Great job ' + currentPlayer + ' you win!');
+    }
 };
 
-const winColumn = function (player) {
-  return threeInARow(player, board[0], board[3], board[6]),
-         threeInARow(player, board[1], board[4], board[7]),
-         threeInARow(player, board[2], board[5], board[8]);
+const winColumn = function (currentPlayer) {
+  if (threeInARow(currentPlayer, board[0], board[3], board[6]),
+         threeInARow(currentPlayer, board[1], board[4], board[7]),
+         threeInARow(currentPlayer, board[2], board[5], board[8])) {
+         console.log('Great job ' + currentPlayer + ' you win!');
+    }
 };
 
-const winDiag = function (player) {
-  return threeInARow(player, board[0], board[4], board[8]),
-         threeInARow(player, board[2], board[4], board[6]);
+const winDiag = function (currentPlayer) {
+  if (threeInARow(currentPlayer, board[0], board[4], board[8]),
+         threeInARow(currentPlayer, board[2], board[4], board[6])) {
+           console.log('Great job ' + currentPlayer + ' you win!');
+         }
 };
 
 const winnerIs = function (currentPlayer) {
@@ -45,11 +52,9 @@ const winnerIs = function (currentPlayer) {
 
 const getWinner = function () {
   if (winnerIs(player1)) {
-    return 'X';
+    return currentPlayer;
   } else if (winnerIs(player2)) {
-    return 'O';
-  } else {
-    return ('Game is a draw.');
+    return currentPlayer;
   }
 };
 
@@ -72,7 +77,7 @@ yourMove(board, 1);
 console.log(board);
 yourMove(board, 4);
 console.log(board);
-console.log(getWinner());
+console.log(getWinner(currentPlayer));
 module.exports = {
   board,
   player1,
