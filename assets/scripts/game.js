@@ -27,22 +27,6 @@ const player2 = 'O';
 
 let currentPlayer = 'X';
 
-const togglePlayer = function (board, move) {
-  if (board[move] === '') {
-    board[move] = currentPlayer;
-    getWinner();
-  }  else if (currentPlayer === 'X') {
-    currentPlayer = 'O';
-    console.log(currentPlayer);
-  }  else if (board[move] !== '') {
-    console.log('Please try again');
-  }   else {
-    currentPlayer = 'X';
-    console.log(currentPlayer);
-  }
-};
-};
-
 const reset = function () {
   fullBoard = false;
   board = newBoard;
@@ -101,6 +85,41 @@ const getWinner = function () {
   reset();
 };
 
+// const togglePlayer = function (index) {
+//    if (board[index] === '') {
+//     board[index] = currentPlayer;
+//     getWinner();
+//     if (currentPlayer === 'X') {
+//     currentPlayer = 'O';
+//     console.log(currentPlayer);
+//   }   else {
+//     currentPlayer = 'X';
+//     console.log(currentPlayer);
+//   }}
+// // }  else {
+// //   console.log('Please try again.');
+// // }
+// };
+
+const togglePlayer = function() {
+  if (currentPlayer === 'X') {
+    currentPlayer = 'O';
+  } else if (currentPlayer === 'O') {
+    currentPlayer = 'X';
+  }
+};
+
+const yourMove = function (move) {
+  if (board[move] !== '') {
+    console.log('Please try agian.');
+  } else if (board[move] === '') {
+    board[move] = currentPlayer;
+  }
+
+
+};
+
+
 const printBoard = function () {
   for (let i = 0; i < board.length; i++) {
   if (board[i] === 'X') {
@@ -114,12 +133,13 @@ const printBoard = function () {
 const game = function (event) {
   togglePlayer();
   printBoard();
+  yourMove(parseInt(event.target.id));
   boardFull();
   getWinner();
 };
 
 const handler = function () {
-$('.box').on('click', game);
+$('#0').on('click', game);
 };
 
 module.exports = {
