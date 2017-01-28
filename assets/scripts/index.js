@@ -14,13 +14,16 @@ $(() => {
 const authEvents = require('./auth/events.js');
 const game = require('./game.js');
 
+
+$('.box').on('click', (event) => {
+  let currentSquare = event.currentTarget.id;
+  let moveSuccess = game.togglePlayer(currentSquare);
+  $(event.currentTarget).text(moveSuccess);
+});
+
 // use require without a reference to ensure a file is bundled
 
 $(() => {
   authEvents.addHandlers();
   game.handler();
 });
-
-module.exports = {
-
-};

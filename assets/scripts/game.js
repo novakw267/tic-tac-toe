@@ -117,10 +117,10 @@ const game = function (event) {
   getWinner();
 };
 
-const handler = function () {
-$('#0').on('click', game);
-console.log(event.targt.id);
-};
+//const handler = function () {
+//$('#0').on('click', game);
+//console.log(event.targt.id);
+//};
 
 module.exports = {
   board,
@@ -139,5 +139,5 @@ module.exports = {
   currentPlayer,
   togglePlayer,
   yourMove,
-  handler,
+  game,
 };
