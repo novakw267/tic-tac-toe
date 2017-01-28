@@ -5,6 +5,6 @@
 
 // load manifests
 // scripts
-require('./assets/scripts/index.js');
+require('./assets/scripts/game.js');
 // styles
 require('./assets/styles/index.scss');

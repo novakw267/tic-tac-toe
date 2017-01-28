@@ -97,29 +97,31 @@ const yourMove = function (board, move) {
         console.log('Please try again');
       } else if (board[move] === '') {
         board[move] = currentPlayer;
+        console.log(board);
         togglePlayer();
       }
     };
 
-yourMove(board, 0);
-console.log(board);
-yourMove(board, 1);
-console.log(board);
-yourMove(board, 2);
-console.log(board);
-yourMove(board, 5);
-console.log(board);
-yourMove(board, 3);
-console.log(board);
-yourMove(board, 6);
-console.log(board);
-yourMove(board, 4);
-console.log(board);
-yourMove(board, 8);
-console.log(board);
-yourMove(board, 7);
-console.log(board);
-console.log(getWinner(currentPlayer));
+for (let i = 0; i < board.length; i++) {
+  if (board[i] === 'X') {
+      $('#' + i).text('X');
+  } else if (board[i] === 'O'){
+      $('#' + i).text('O');
+    }
+}
+
+const game = function (event) {
+  togglePlayer();
+  yourMove(board, parseInt(event.target.id));
+  boardFull();
+  getWinner();
+};
+
+const handler = function () {
+$('#0').on('click', game);
+console.log(event.targt.id);
+};
+
 module.exports = {
   board,
   boardFull,
@@ -137,4 +139,5 @@ module.exports = {
   currentPlayer,
   togglePlayer,
   yourMove,
+  handler,
 };
