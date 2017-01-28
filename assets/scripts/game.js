@@ -24,14 +24,23 @@ const boardFull = function () {
 
 const player1 = 'X';
 const player2 = 'O';
+
 let currentPlayer = 'X';
 
-const togglePlayer = function () {
-  if (currentPlayer === 'X') {
+const togglePlayer = function (board, move) {
+  if (board[move] === '') {
+    board[move] = currentPlayer;
+    getWinner();
+  }  else if (currentPlayer === 'X') {
     currentPlayer = 'O';
-  } else if (currentPlayer === 'O') {
+    console.log(currentPlayer);
+  }  else if (board[move] !== '') {
+    console.log('Please try again');
+  }   else {
     currentPlayer = 'X';
+    console.log(currentPlayer);
   }
+};
 };
 
 const reset = function () {
@@ -39,8 +48,8 @@ const reset = function () {
   board = newBoard;
 };
 
-const threeInARow = function (player, cellOne, cellTwo, cellThree) {
-  return (cellOne === player) && (cellTwo === player) && (cellThree === player);
+const threeInARow = function (currentPlayer, cellOne, cellTwo, cellThree) {
+  return (cellOne === currentPlayer) && (cellTwo === currentPlayer) && (cellThree === currentPlayer);
 };
 
 const winRows = function (currentPlayer) {
@@ -92,15 +101,6 @@ const getWinner = function () {
   reset();
 };
 
-const yourMove = function (board, move) {
-      if (board[move] !== '') {
-        console.log('Please try again');
-      } else if (board[move] === '') {
-        board[move] = currentPlayer;
-        togglePlayer();
-      }
-    };
-
 const printBoard = function () {
   for (let i = 0; i < board.length; i++) {
   if (board[i] === 'X') {
@@ -112,9 +112,7 @@ const printBoard = function () {
 };
 
 const game = function (event) {
-  currentPlayer;
   togglePlayer();
-  yourMove(board, parseInt(event.target.id));
   printBoard();
   boardFull();
   getWinner();
@@ -137,7 +135,7 @@ module.exports = {
   winnerIs,
   tieGame,
   togglePlayer,
-  yourMove,
   game,
   handler,
+  currentPlayer,
 };
