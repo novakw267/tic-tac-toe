@@ -101,24 +101,27 @@ const getWinner = function () {
 // // }
 // };
 
-const togglePlayer = function() {
-  if (currentPlayer === 'X') {
-    currentPlayer = 'O';
-  } else if (currentPlayer === 'O') {
-    currentPlayer = 'X';
-  }
-};
+// const togglePlayer = function() {
+//   if (currentPlayer === 'X') {
+//     currentPlayer = 'O';
+//   } else if (currentPlayer === 'O') {
+//     currentPlayer = 'X';
+//   }
+// };
 
 const yourMove = function (move) {
   if (board[move] !== '') {
     console.log('Please try agian.');
-  } else if (board[move] === '') {
+    return;
+  }
+  if (currentPlayer === 'X') {
+    currentPlayer = 'O';
+    board[move] = currentPlayer;
+  } else if (currentPlayer === 'O') {
+    currentPlayer = 'X';
     board[move] = currentPlayer;
   }
-
-
 };
-
 
 const printBoard = function () {
   for (let i = 0; i < board.length; i++) {
@@ -131,15 +134,23 @@ const printBoard = function () {
 };
 
 const game = function (event) {
-  togglePlayer();
-  printBoard();
+  // togglePlayer();
   yourMove(parseInt(event.target.id));
+  printBoard();
   boardFull();
   getWinner();
 };
 
 const handler = function () {
 $('#0').on('click', game);
+$('#1').on('click', game);
+$('#2').on('click', game);
+$('#3').on('click', game);
+$('#4').on('click', game);
+$('#5').on('click', game);
+$('#6').on('click', game);
+$('#7').on('click', game);
+$('#8').on('click', game);
 };
 
 module.exports = {
@@ -154,7 +165,7 @@ module.exports = {
   getWinner,
   winnerIs,
   tieGame,
-  togglePlayer,
+  // togglePlayer,
   game,
   handler,
   currentPlayer,
