@@ -97,37 +97,37 @@ const yourMove = function (board, move) {
         console.log('Please try again');
       } else if (board[move] === '') {
         board[move] = currentPlayer;
-        console.log(board);
         togglePlayer();
       }
     };
 
-for (let i = 0; i < board.length; i++) {
+const printBoard = function () {
+  for (let i = 0; i < board.length; i++) {
   if (board[i] === 'X') {
       $('#' + i).text('X');
   } else if (board[i] === 'O'){
       $('#' + i).text('O');
     }
 }
+};
 
 const game = function (event) {
+  currentPlayer;
   togglePlayer();
   yourMove(board, parseInt(event.target.id));
+  printBoard();
   boardFull();
   getWinner();
 };
 
-//const handler = function () {
-//$('#0').on('click', game);
-//console.log(event.targt.id);
-//};
+const handler = function () {
+$('.box').on('click', game);
+};
 
 module.exports = {
   board,
   boardFull,
   fullBoard,
-  player1,
-  player2,
   threeInARow,
   newBoard,
   winRows,
@@ -136,8 +136,8 @@ module.exports = {
   getWinner,
   winnerIs,
   tieGame,
-  currentPlayer,
   togglePlayer,
   yourMove,
   game,
+  handler,
 };
