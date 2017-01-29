@@ -19,13 +19,28 @@ const spotTaken = function (element) {
 const boardFull = function () {
   if (board.every(spotTaken)) {
     fullBoard = true;
+    console.log();
   }
 };
 
 const player1 = 'X';
 const player2 = 'O';
 
-let currentPlayer = 'X';
+let currentPlayer = 'O';
+
+const yourMove = function (move) {
+  if (board[move] !== '') {
+    console.log('Please try agian.');
+    return;
+  }
+  if (currentPlayer === 'X') {
+    currentPlayer = 'O';
+  } else if (currentPlayer === 'O') {
+    currentPlayer = 'X';
+  }
+  board[move] = currentPlayer;
+  console.log(board);
+};
 
 const reset = function () {
   fullBoard = false;
@@ -109,20 +124,6 @@ const getWinner = function () {
 //   }
 // };
 
-const yourMove = function (move) {
-  if (board[move] !== '') {
-    console.log('Please try agian.');
-    return;
-  }
-  if (currentPlayer === 'X') {
-    currentPlayer = 'O';
-    board[move] = currentPlayer;
-  } else if (currentPlayer === 'O') {
-    currentPlayer = 'X';
-    board[move] = currentPlayer;
-  }
-};
-
 const printBoard = function () {
   for (let i = 0; i < board.length; i++) {
   if (board[i] === 'X') {
@@ -138,30 +139,28 @@ const game = function (event) {
   yourMove(parseInt(event.target.id));
   printBoard();
   boardFull();
+  winnerIs();
   getWinner();
+  reset();
 };
 
 const handler = function () {
-$('#0').on('click', game);
-$('#1').on('click', game);
-$('#2').on('click', game);
-$('#3').on('click', game);
-$('#4').on('click', game);
-$('#5').on('click', game);
-$('#6').on('click', game);
-$('#7').on('click', game);
-$('#8').on('click', game);
+$('.box').on('click', game);
+// $('#1').on('click', game);
+// $('#2').on('click', game);
+// $('#3').on('click', game);
+// $('#4').on('click', game);
+// $('#5').on('click', game);
+// $('#6').on('click', game);
+// $('#7').on('click', game);
+// $('#8').on('click', game);
 };
 
 module.exports = {
   board,
   boardFull,
   fullBoard,
-  threeInARow,
   newBoard,
-  winRows,
-  winColumn,
-  winDiag,
   getWinner,
   winnerIs,
   tieGame,
