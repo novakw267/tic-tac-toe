@@ -41,10 +41,10 @@ const yourMove = function (move) {
   console.log(board);
 };
 
-const reset = function () {
-  fullBoard = false;
-  board = newBoard;
-};
+// const reset = function () {
+//   fullBoard = false;
+//   board = newBoard;
+// };
 
 const threeInARow = function (currentPlayer, cellOne, cellTwo, cellThree) {
   return (cellOne === currentPlayer) && (cellTwo === currentPlayer) && (cellThree === currentPlayer);
@@ -90,13 +90,12 @@ const getWinner = function () {
     console.log('Game is a tie, try again.');
   }
     else if (winnerIs(player1)) {
-    return currentPlayer;
+      $('.message').text('X is the winner!');
   }
     else if (winnerIs(player2)) {
-    return currentPlayer;
+      $('.message').text('O is the winner');
   }
 
-  reset();
 };
 
 // const togglePlayer = function (index) {
@@ -133,6 +132,14 @@ const printBoard = function () {
 }
 };
 
+const resetGameBoard = function () {
+  for (let i = 0; i < board.length; i++) {
+    board[i] = '';
+    $('#' + i).text(''); // + combines the two strings
+    $('.message').text('');
+  }
+};
+
 const game = function (event) {
   // togglePlayer();
   yourMove(parseInt(event.target.id));
@@ -140,7 +147,6 @@ const game = function (event) {
   boardFull();
   winnerIs();
   getWinner();
-  reset();
 };
 
 const handler = function () {
@@ -167,5 +173,5 @@ module.exports = {
   game,
   handler,
   currentPlayer,
-  reset,
+  resetGameBoard,
 };

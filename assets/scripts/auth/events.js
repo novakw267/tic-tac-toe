@@ -60,7 +60,7 @@ const onSignOut = function (event) {
 };
 
 $('#play-again').on('click', () =>{
-  game.reset();
+  game.resetGameBoard();
 });
 
 const addHandlers = () => {
@@ -68,7 +68,8 @@ const addHandlers = () => {
   $('#sign-in').on('submit', onSignIn);
   $('#change-password').on('submit', onChangePassword);
   $('signOut').on('submit', onSignOut);
-  $('#play-again').on('click', game.reset);
+  $('#sign-in').on('submit', onSignIn);
+  $('#play-again').on('click', game.resetGameBoard);
 };
 
 module.exports = {
