@@ -13,7 +13,58 @@
     </head>
     <body class="container-fluid">
       <h1> Tic Tac Toe!</h1>
-
+      <form id="sign-up">
+        <fieldset>
+          <legend>Sign up!</legend>
+          <label>
+            Email
+            <input type="text" name="credentials[email]">
+          </label>
+          <label>
+            Password
+            <input type="password" name="credentials[password]">
+          </label>
+          <label>
+            Password Confirmation
+            <input type="password" name="credentials[password_confirmation]">
+          </label>
+          <input type="submit" name="submit" value="Sign up!">
+        </fieldset>
+      </form>
+      <form id="sign-in">
+        <fieldset>
+          <legend>Sign in!</legend>
+          <label>
+            Email
+            <input type="text" name="credentials[email]">
+          </label>
+          <label>
+            Password
+            <input type="password" name="credentials[password]">
+          </label>
+          <input type="submit" name="submit" value="Sign in!">
+        </fieldset>
+      </form>
+      <form id="change-password">
+        <fieldset>
+          <legend>Change Password</legend>
+          <label>
+          Old password
+          <input type="password" name="credentials[OLD]">
+          New password
+          <input type="password" name="credentials[NEW]">
+        </label>
+        <input type="submit" name="submit" value="Change Password">
+        </fieldset>
+      </form>
+      <form id="sign-out">
+        <fieldset>
+          <legend>Sign out!</legend>
+          <input id="signOut" type="submit" name="submit" value="Sign Out!">
+        </fieldset>
+      </form>
+      <button id="play-again">Play Again</button>
+      <button id="games-played">Games Played</button>
       <div class="all">
       <div class="row">
   <div class="col-xs-4 box" id="0"></div>

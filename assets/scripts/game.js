@@ -32,8 +32,7 @@ const yourMove = function (move) {
   if (board[move] !== '') {
     console.log('Please try agian.');
     return;
-  }
-  if (currentPlayer === 'X') {
+  } else if (currentPlayer === 'X') {
     currentPlayer = 'O';
   } else if (currentPlayer === 'O') {
     currentPlayer = 'X';
@@ -168,4 +167,5 @@ module.exports = {
   game,
   handler,
   currentPlayer,
+  reset,
 };

@@ -7,6 +7,8 @@ const ui = require('./ui');
 
 const store = require('../store');
 
+const game = require('../game.js');
+
 const onSignUp = function (event) {
   event.preventDefault();
 
@@ -57,11 +59,16 @@ const onSignOut = function (event) {
     ;
 };
 
+$('#play-again').on('click', () =>{
+  game.reset();
+});
+
 const addHandlers = () => {
   $('#sign-up').on('submit', onSignUp);
   $('#sign-in').on('submit', onSignIn);
   $('#change-password').on('submit', onChangePassword);
-  $('sign-out').on('submit', onSignOut);
+  $('signOut').on('submit', onSignOut);
+  $('#play-again').on('click', game.reset);
 };
 
 module.exports = {
