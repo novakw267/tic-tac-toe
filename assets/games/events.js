@@ -11,42 +11,42 @@ const getFormFields = require('../../.././lib/get-form-fields');
 // also, follow a convention for handlers. here, I name my handler
 // beginning with 'on' to denote that it is done when the GET /books
 // button is clicked
-const onGetBooks = function (event) {
+const onGetGames = function (event) {
   event.preventDefault();
   let data = getFormFields(event.target);
 
-  if (data.book.id.length === 0){
+  if (data.games.id.length === 0){
       api.index()
       .then(ui.onSuccess)
       .catch(ui.onError);
   } else {
-    api.show(data.book.id)
+    api.show(data.games.id)
       .then(ui.onSuccess)
       .catch(ui.onError);
   }
 
 };
 
-const onDeleteBook = function(event){
+const onDeleteGames = function(event){
   event.preventDefault();
 
   let data = getFormFields(event.target);
-  api.destroy(data.book.id)
+  api.destroy(data.games.id)
     .then(ui.onDeleteSuccess)
     .catch(ui.onError);
 };
 
-const onPatchBook = function(event){
+const onPatchGames = function(event){
   event.preventDefault();
 
   let data = getFormFields(event.target);
-  api.patch(data.book.id, data)
+  api.patch(data.games.id, data)
     .then(ui.onPatchSuccess)
     .catch(ui.onError);
 };
 
 module.exports = {
-  onGetBooks,
-  onDeleteBook,
-  onPatchBook,
+  onGetGames,
+  onDeleteGames,
+  onPatchGames,
 };

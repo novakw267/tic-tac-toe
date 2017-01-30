@@ -2,10 +2,10 @@
 
 const onSuccess = function (data) {
 //  debugger;
-  if (data.book) {
-    console.log(data.book);
+  if (data.games) {
+    console.log(data.games);
   } else {
-    console.table(data.books);
+    console.table(data.games);
   }
 };
 
@@ -14,11 +14,11 @@ const onError = function (response) {
 };
 
 const onDeleteSuccess = function () {
-  console.log('Book was successfully deleted.');
+  console.log('Games was successfully deleted.');
 };
 
 const onPatchSuccess = function () {
-  console.log('Book was successfully Patched.');
+  console.log('Games was successfully Patched.');
 };
 
 module.exports = {
