@@ -56,6 +56,7 @@ const winRows = function (currentPlayer) {
       threeInARow(currentPlayer, board[6], board[7], board[8])) {
 
          console.log('Great job ' + currentPlayer + ' you win!');
+         return $('#winMessage').text(currentPlayer + ' you won!');
     }
 
 };
@@ -65,6 +66,7 @@ const winColumn = function (currentPlayer) {
       threeInARow(currentPlayer, board[1], board[4], board[7]) ||
       threeInARow(currentPlayer, board[2], board[5], board[8])) {
          console.log('Great job ' + currentPlayer + ' you win!');
+         return $('#winMessage').text(currentPlayer + ' you won!');
     }
 
 };
@@ -73,6 +75,7 @@ const winDiag = function (currentPlayer) {
   if (threeInARow(currentPlayer, board[0], board[4], board[8]) ||
       threeInARow(currentPlayer, board[2], board[4], board[6])) {
          console.log('Great job ' + currentPlayer + ' you win!');
+         return $('#winMessage').text(currentPlayer + ' you won!');
          }
 
 };
@@ -88,12 +91,11 @@ let tieGame = function () {
 const getWinner = function () {
   if (tieGame(fullBoard)) {
     console.log('Game is a tie, try again.');
+    return $('#winMessage').text('Game is Tie');
   }
     else if (winnerIs(player1)) {
-      $('.message').text('X is the winner!');
   }
     else if (winnerIs(player2)) {
-      $('.message').text('O is the winner');
   }
 
 };

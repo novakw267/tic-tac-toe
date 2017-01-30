@@ -50,9 +50,9 @@
           <legend>Change Password</legend>
           <label>
           Old password
-          <input type="password" name="credentials[OLD]">
+          <input type="password" name="passwords[old]">
           New password
-          <input type="password" name="credentials[NEW]">
+          <input type="password" name="passwords[new]">
         </label>
         <input type="submit" name="submit" value="Change Password">
         </fieldset>
@@ -65,6 +65,7 @@
       </form>
       <button id="play-again">Play Again</button>
       <button id="games-played">Games Played</button>
+      <div class="message" id="winMessage"></div>
       <div class="all">
       <div class="row">
   <div class="col-xs-4 box" id="0"></div>
