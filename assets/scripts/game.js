@@ -32,10 +32,10 @@ const yourMove = function (move) {
   if (board[move] !== '') {
     console.log('Please try agian.');
     return;
-  } else if (currentPlayer === 'X') {
-    currentPlayer = 'O';
   } else if (currentPlayer === 'O') {
     currentPlayer = 'X';
+  } else if (currentPlayer === 'X') {
+    currentPlayer = 'O';
   }
   board[move] = currentPlayer;
   console.log(board);
@@ -100,30 +100,6 @@ const getWinner = function () {
 
 };
 
-// const togglePlayer = function (index) {
-//    if (board[index] === '') {
-//     board[index] = currentPlayer;
-//     getWinner();
-//     if (currentPlayer === 'X') {
-//     currentPlayer = 'O';
-//     console.log(currentPlayer);
-//   }   else {
-//     currentPlayer = 'X';
-//     console.log(currentPlayer);
-//   }}
-// // }  else {
-// //   console.log('Please try again.');
-// // }
-// };
-
-// const togglePlayer = function() {
-//   if (currentPlayer === 'X') {
-//     currentPlayer = 'O';
-//   } else if (currentPlayer === 'O') {
-//     currentPlayer = 'X';
-//   }
-// };
-
 const printBoard = function () {
   for (let i = 0; i < board.length; i++) {
   if (board[i] === 'X') {
@@ -143,7 +119,6 @@ const resetGameBoard = function () {
 };
 
 const game = function (event) {
-  // togglePlayer();
   yourMove(parseInt(event.target.id));
   printBoard();
   boardFull();
@@ -151,16 +126,12 @@ const game = function (event) {
   getWinner();
 };
 
+// const gamesPlayed = function () {
+//
+// };
+
 const handler = function () {
 $('.box').on('click', game);
-// $('#1').on('click', game);
-// $('#2').on('click', game);
-// $('#3').on('click', game);
-// $('#4').on('click', game);
-// $('#5').on('click', game);
-// $('#6').on('click', game);
-// $('#7').on('click', game);
-// $('#8').on('click', game);
 };
 
 module.exports = {
@@ -171,7 +142,6 @@ module.exports = {
   getWinner,
   winnerIs,
   tieGame,
-  // togglePlayer,
   game,
   handler,
   currentPlayer,

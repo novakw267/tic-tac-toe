@@ -2,7 +2,6 @@
 
 const config = require('../config.js');
 const store = require('../store');
-const game = require('../example');
 
 const create = function (data) {
   return $.ajax({
@@ -57,7 +56,6 @@ const update = function (id, gameIndex, player, gameOver) {
 module.exports = {
   index,
   show,
-  game,
   create,
   update,
 };

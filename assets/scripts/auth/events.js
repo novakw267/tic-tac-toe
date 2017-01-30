@@ -61,6 +61,10 @@ $('#play-again').on('click', () => {
   game.resetGameBoard();
 });
 
+$('#games-played').on('click', () =>{
+  game.gamesPlayed();
+});
+
 const addHandlers = () => {
   $('#sign-up').on('submit', onSignUp);
   $('#sign-in').on('submit', onSignIn);
