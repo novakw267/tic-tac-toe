@@ -13,6 +13,7 @@ $(() => {
 
 const authEvents = require('./auth/events.js');
 const game = require('./game.js');
+const games = require('./games/events');
 
 
 //$('col-xs-4 box').on('click', (event) => {
@@ -26,4 +27,7 @@ const game = require('./game.js');
 $(() => {
   authEvents.addHandlers();
   game.handler();
+  games.addHandlers();
+  $('#game-search').on('submit', games.onGetGames);
+  $('.new-game').on('click', games.onCreateGame);
 });

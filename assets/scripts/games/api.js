@@ -1,8 +1,19 @@
 'use strict';
 
 const config = require('../config.js');
-
 const store = require('../store');
+const game = require('../example');
+
+const create = function (data) {
+  return $.ajax({
+    url: config.apiOrigin + '/games',
+    method: 'POST',
+    headers: {
+      Authorization: `Token token=${store.user.token}`,
+    },
+    data,
+  });
+};
 
 const index = function () {
   return $.ajax({
@@ -24,23 +35,21 @@ const show = function (id) {
   });
 };
 
-const patch = function(id, data){
+const update = function (id, gameIndex, player, gameOver) {
   return $.ajax({
     url: config.apiOrigin + '/games/' + id,
     method: 'PATCH',
     headers: {
       Authorization: `Token token=${store.user.token}`,
     },
-    data,
-  });
-};
-
-const post = function(){
-  return $.ajax({
-    url: config.apiOrigin + '/games/',
-    method: 'PATCH',
-    headers: {
-      Authorization: `Token token=${store.user.token}`,
+    data: {
+      game: {
+        cell: {
+          index: gameIndex,
+          value: player,
+        },
+        over: gameOver,
+      },
     },
   });
 };
@@ -48,6 +57,7 @@ const post = function(){
 module.exports = {
   index,
   show,
-  patch,
-  post,
+  game,
+  create,
+  update,
 };
