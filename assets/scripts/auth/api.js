@@ -20,7 +20,7 @@ const signIn = function (data) {
       data,
     });
 
-};
+  };
 
 const changePassword = function (data) {
   return $.ajax({
@@ -34,11 +34,11 @@ const changePassword = function (data) {
 };
 
 const signOut = function () {
- return $.ajax({
-   url: `${config.apiOrigin}/sign-out/${store.user.id}`,
-   method: 'DELETE',
-   headers: {
-     Authorization: `Token token=${store.user.token}`,
+    return $.ajax({
+      url: `${config.apiOrigin}/sign-out/${store.user.id}`,
+      method: 'DELETE',
+      headers: {
+      Authorization: `Token token=${store.user.token}`,
    },
  });
 };
