@@ -41,11 +41,12 @@ const onGetGames = function (event) {
 
 };
 
-// const onUpdateGames = function (event) {
-//   event.preventDefault();
-//
-//   let data = getFormFields(event.target);
-//   api.patch(data.gameIndex player, gameOver)
+const onUpdateGames = function (event) {
+  event.preventDefault();
+
+  let data = getFormFields(event.target);
+  api.patch(data.gameIndex.player.gameOver);
+};
 
 
 
