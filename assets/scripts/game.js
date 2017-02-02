@@ -1,17 +1,24 @@
 'use strict';
 
+require('./games/events.js');
+// Declaring the starting board
 let board = ['', '', '',
                '', '', '',
                '', '', '',
              ];
-
+// Declaring an empty board for the reset function
 let newBoard = ['', '', '',
                '', '', '',
                '', '', '',
                 ];
 
+// Declaring what a full board isn't so later I can determine a full board.
 let fullBoard = false;
 
+// This searches the board to see if the spot you clicked on is full or not.
+// If it determines it is not then you're allowed to place your symbol.
+// If the spot is found to be full, this will display a message
+// saying to try again.
 const spotTaken = function (element) {
     return element !== '';
 };
@@ -23,21 +30,31 @@ const boardFull = function () {
   }
 };
 
+// declaring my starting variable for the player1 and 2 piece
+// startin currenPlayer with O
 const player1 = 'X';
-const player2 = 'O';
-
+const player2 = 'O';a
 let currentPlayer = 'O';
 
+// function name: yourMove
+// parameters: move represents a number of 0-8
+// purpose: accepts a position on the board which is a number 0-8
 const yourMove = function (move) {
+  // and checks if there is a value in that position
   if (board[move] !== '') {
+    // if there is it logs please try again/
     console.log('Please try agian.');
     return;
+  // if current player is O change it to X
   } else if (currentPlayer === 'O') {
     currentPlayer = 'X';
+  // if current is X change to O
   } else if (currentPlayer === 'X') {
     currentPlayer = 'O';
   }
+  // and adds the current players piece to the board array
   board[move] = currentPlayer;
+  // logs the board
   console.log(board);
 };
 
@@ -46,10 +63,16 @@ const yourMove = function (move) {
 //   board = newBoard;
 // };
 
+// threeInARow is declaring what the win function will be looking for
+// It wants to find that there are three cells in a row occupied
+// by the same player's symbol
 const threeInARow = function (currentPlayer, cellOne, cellTwo, cellThree) {
   return (cellOne === currentPlayer) && (cellTwo === currentPlayer) && (cellThree === currentPlayer);
 };
 
+// this is the win function for the rows of the board
+// It is looking to see if the player symbol occupies 3 spaces
+ // in any of the arrays that match a rows
 const winRows = function (currentPlayer) {
   if (threeInARow(currentPlayer, board[0], board[1], board[2]) ||
       threeInARow(currentPlayer, board[3], board[4], board[5]) ||
@@ -61,6 +84,9 @@ const winRows = function (currentPlayer) {
 
 };
 
+// this is the win function for the rows of the board
+// It is looking to see if the player symbol occupies 3 spaces
+ // in any of the arrays that match a column
 const winColumn = function (currentPlayer) {
   if (threeInARow(currentPlayer, board[0], board[3], board[6]) ||
       threeInARow(currentPlayer, board[1], board[4], board[7]) ||
@@ -71,6 +97,9 @@ const winColumn = function (currentPlayer) {
 
 };
 
+// this is the win function for the rows of the board
+// It is looking to see if the player symbol occupies 3 spaces
+ // in any of the arrays that match a diagnol
 const winDiag = function (currentPlayer) {
   if (threeInARow(currentPlayer, board[0], board[4], board[8]) ||
       threeInARow(currentPlayer, board[2], board[4], board[6])) {
@@ -80,6 +109,10 @@ const winDiag = function (currentPlayer) {
 
 };
 
+// This function is checking for if the criteria of the previous three
+// functions have been met. If they have not been met and it finds the board
+// to be full, it will deplay the tieGame function to display the game is over
+// and there was no winner.
 const winnerIs = function (currentPlayer) {
   return winRows(currentPlayer) || winColumn(currentPlayer) || winDiag(currentPlayer);
 };
@@ -88,6 +121,9 @@ let tieGame = function () {
        return board.every(spotTaken);
 };
 
+// This function will call the previous functions to determine a winner
+// It will then display a seperate message depending on which player won
+// if the game was a tie it will display that the game was a tie.
 const getWinner = function () {
   if (tieGame(fullBoard)) {
     console.log('Game is a tie, try again.');
@@ -100,6 +136,11 @@ const getWinner = function () {
 
 };
 
+// This will go through the current ideration of
+ // the board index, and see if the spot clicked on is full
+// if that is the case, the game will display try again
+// If the board piece is empty then it will print the symbol for
+// whichever players turn it currently is.
 const printBoard = function () {
   for (let i = 0; i < board.length; i++) {
   if (board[i] === 'X') {
@@ -110,6 +151,9 @@ const printBoard = function () {
 }
 };
 
+// This is the function for resetting the game board without refreshing the page
+// It looks to see if the board has anything in its index. If it does it will
+// clear the board. However if there is nothing on the board, it will do nothing
 const resetGameBoard = function () {
   for (let i = 0; i < board.length; i++) {
     board[i] = '';
@@ -118,12 +162,16 @@ const resetGameBoard = function () {
   }
 };
 
+// This is the function the sets the order of operations for the whole game.
+// It calls the functions in the order they need to be presented, in order
+// for the game to work.
 const game = function (event) {
   yourMove(parseInt(event.target.id));
   printBoard();
   boardFull();
   winnerIs();
   getWinner();
+  event.onUpdateGames();
 };
 
 // const gamesPlayed = function () {

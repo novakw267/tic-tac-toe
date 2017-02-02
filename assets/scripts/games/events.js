@@ -45,7 +45,7 @@ const onGetGames = function (event) {
 //   event.preventDefault();
 //
 //   let data = getFormFields(event.target);
-//   api.patch(data.gameIndex player, gameOver)
+//   api.update(data)
 
 
 
@@ -59,17 +59,21 @@ const onGetGames = function (event) {
 //     .catch(ui.onError);
 // };
 //
-// const onPatchGames = function(event){
-//   event.preventDefault();
-//
-//   let data = getFormFields(event.target);
-//   api.patch(data.games.id, data)
-//     .then(ui.onPatchSuccess)
-//     .catch(ui.onError);
-// };
+const onUpdateGames = function(event){
+  event.preventDefault();
+
+  let data = getFormFields(event.target);
+  api.update(data.games.id, data)
+    .then(ui.onPatchSuccess)
+    .catch(ui.onError);
+};
+
+
 
 const addHandlers = () => {
   $('#search-submit').on('submit', onGetGames);
+  // $('#search-submit').on('submit', onUpdateGames);
+
 };
 
 module.exports = {
@@ -77,5 +81,5 @@ module.exports = {
   onGetGames,
   addHandlers,
   // onDeleteGames,
-  // onPatchGames,
+  onUpdateGames,
 };
