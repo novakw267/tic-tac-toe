@@ -54,11 +54,6 @@ const yourMove = function (move) {
   board[move] = currentPlayer;
 };
 
-// const reset = function () {
-//   fullBoard = false;
-//   board = newBoard;
-// };
-
 // threeInARow is declaring what the win function will be looking for
 // It wants to find that there are three cells in a row occupied
 // by the same player's symbol
@@ -157,18 +152,19 @@ const resetGameBoard = function () {
 // It calls the functions in the order they need to be presented, in order
 // for the game to work.
 const game = function (event) {
-  yourMove(parseInt(event.target.id));
-  printBoard();
-  boardFull();
-  winnerIs();
-  getWinner();
-  event.onUpdateGames();
+  yourMove(parseInt(event.target.id));// my toggle player function
+  printBoard();// what puts the symbols on the board
+  boardFull();// detects to see if the board is full
+  winnerIs();// checks for a winner
+  getWinner();// displays the winner!
+  // event.onUpdateGames();
 };
 
 // const gamesPlayed = function () {
 //
 // };
 
+// click handler for clicking on the board.
 const handler = function () {
 $('.box').on('click', game);
 };

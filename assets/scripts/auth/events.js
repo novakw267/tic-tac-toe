@@ -17,6 +17,7 @@ const onSignUp = function (event) {
   api.signUp(data)
     .then(ui.success)
     .catch(ui.failure);
+    return $('#winMessage').text('Congradulations on signing up!');
 };
 
 const onSignIn = function (event) {
@@ -31,6 +32,7 @@ const onSignIn = function (event) {
    })
    .then(ui.success)
    .catch(ui.failure);
+   return $('#winMessage').text('You have signed in, play some Tic Tac Toe!');
 };
 
 const onChangePassword = function (event) {
@@ -42,6 +44,7 @@ const onChangePassword = function (event) {
   api.changePassword(data)
     .then(ui.success)
     .catch(ui.failure);
+    return $('#winMessage').text('Changing your password? You smartie pants.');
 };
 
 const onSignOut = function (event) {
@@ -53,8 +56,8 @@ const onSignOut = function (event) {
       return store;
     })
     .then(ui.success)
-    .catch(ui.failure)
-    ;
+    .catch(ui.failure);
+    return $('#winMessage').text('So long, come back again. =)');
 };
 
 $('#play-again').on('click', () => {
