@@ -26,13 +26,13 @@ const onSignIn = function (event) {
  let data = getFormFields(event.target);
 
  api.signIn(data)
-   .then((response) => {
-     store.user = response.user;
-     return store.user;
-   })
-   .then(ui.success)
+  // can only have 1 .then
+  //  .then((response) => {
+  //    store.user = response.user;
+  //    return store.user;
+  //  })
+   .then(ui.signInSuccess)
    .catch(ui.failure);
-   return $('#winMessage').text('You have signed in, play some Tic Tac Toe!');
 };
 
 const onChangePassword = function (event) {

@@ -68,7 +68,7 @@ const winRows = function (currentPlayer) {
   if (threeInARow(currentPlayer, board[0], board[1], board[2]) ||
       threeInARow(currentPlayer, board[3], board[4], board[5]) ||
       threeInARow(currentPlayer, board[6], board[7], board[8])) {
-         return $('#winMessage').text(currentPlayer + ' you won!');
+         return $('#winMessage').text(currentPlayer + ' you won! Feel free to start over, by hitting Play Again.');
     }
 
 };
@@ -80,7 +80,7 @@ const winColumn = function (currentPlayer) {
   if (threeInARow(currentPlayer, board[0], board[3], board[6]) ||
       threeInARow(currentPlayer, board[1], board[4], board[7]) ||
       threeInARow(currentPlayer, board[2], board[5], board[8])) {
-         return $('#winMessage').text(currentPlayer + ' you won!');
+         return $('#winMessage').text(currentPlayer + ' you won! Feel free to start over, by hitting Play Again.');
     }
 
 };
@@ -113,7 +113,7 @@ let tieGame = function () {
 // if the game was a tie it will display that the game was a tie.
 const getWinner = function () {
   if (tieGame(fullBoard)) {
-    return $('#winMessage').text('Game is Tie');
+    return $('#winMessage').text('The game is Tie. Feel free to start over, by hitting Play Again.');
   }
     else if (winnerIs(player1)) {
   }
@@ -152,11 +152,19 @@ const resetGameBoard = function () {
 // It calls the functions in the order they need to be presented, in order
 // for the game to work.
 const game = function (event) {
-  yourMove(parseInt(event.target.id));// my toggle player function
-  printBoard();// what puts the symbols on the board
-  boardFull();// detects to see if the board is full
-  winnerIs();// checks for a winner
-  getWinner();// displays the winner!
+
+  // if currentPlayer has not won the game then run all the game functions
+  if ( !winnerIs(currentPlayer) ) {
+    yourMove(parseInt(event.target.id));// my toggle player function
+    printBoard();// what puts the symbols on the board
+    boardFull();// detects to see if the board is full
+    winnerIs();// checks for a winner
+    getWinner();// displays the winner!
+
+  // if the already won then print the message to tell the game is already won
+  } else {
+    $("#winMessage").text("Game is already over");
+  }
   // event.onUpdateGames();
 };
 
@@ -166,7 +174,7 @@ const game = function (event) {
 
 // click handler for clicking on the board.
 const handler = function () {
-$('.box').on('click', game);
+  $('.box').on('click', game);
 };
 
 module.exports = {
