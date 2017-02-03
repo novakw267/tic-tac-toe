@@ -26,7 +26,6 @@ const spotTaken = function (element) {
 const boardFull = function () {
   if (board.every(spotTaken)) {
     fullBoard = true;
-    console.log();
   }
 };
 
