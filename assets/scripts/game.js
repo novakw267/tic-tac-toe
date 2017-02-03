@@ -33,7 +33,7 @@ const boardFull = function () {
 // declaring my starting variable for the player1 and 2 piece
 // startin currenPlayer with O
 const player1 = 'X';
-const player2 = 'O';a
+const player2 = 'O';
 let currentPlayer = 'O';
 
 // function name: yourMove
@@ -43,8 +43,7 @@ const yourMove = function (move) {
   // and checks if there is a value in that position
   if (board[move] !== '') {
     // if there is it logs please try again/
-    console.log('Please try agian.');
-    return;
+    return $('#winMessage').text('Please try again!');
   // if current player is O change it to X
   } else if (currentPlayer === 'O') {
     currentPlayer = 'X';
@@ -54,8 +53,6 @@ const yourMove = function (move) {
   }
   // and adds the current players piece to the board array
   board[move] = currentPlayer;
-  // logs the board
-  console.log(board);
 };
 
 // const reset = function () {
@@ -77,8 +74,6 @@ const winRows = function (currentPlayer) {
   if (threeInARow(currentPlayer, board[0], board[1], board[2]) ||
       threeInARow(currentPlayer, board[3], board[4], board[5]) ||
       threeInARow(currentPlayer, board[6], board[7], board[8])) {
-
-         console.log('Great job ' + currentPlayer + ' you win!');
          return $('#winMessage').text(currentPlayer + ' you won!');
     }
 
@@ -91,7 +86,6 @@ const winColumn = function (currentPlayer) {
   if (threeInARow(currentPlayer, board[0], board[3], board[6]) ||
       threeInARow(currentPlayer, board[1], board[4], board[7]) ||
       threeInARow(currentPlayer, board[2], board[5], board[8])) {
-         console.log('Great job ' + currentPlayer + ' you win!');
          return $('#winMessage').text(currentPlayer + ' you won!');
     }
 
@@ -103,7 +97,6 @@ const winColumn = function (currentPlayer) {
 const winDiag = function (currentPlayer) {
   if (threeInARow(currentPlayer, board[0], board[4], board[8]) ||
       threeInARow(currentPlayer, board[2], board[4], board[6])) {
-         console.log('Great job ' + currentPlayer + ' you win!');
          return $('#winMessage').text(currentPlayer + ' you won!');
          }
 
@@ -126,7 +119,6 @@ let tieGame = function () {
 // if the game was a tie it will display that the game was a tie.
 const getWinner = function () {
   if (tieGame(fullBoard)) {
-    console.log('Game is a tie, try again.');
     return $('#winMessage').text('Game is Tie');
   }
     else if (winnerIs(player1)) {
