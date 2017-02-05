@@ -27,10 +27,10 @@ const onSignIn = function (event) {
 
  api.signIn(data)
   // can only have 1 .then
-  //  .then((response) => {
-  //    store.user = response.user;
-  //    return store.user;
-  //  })
+   .then((response) => {
+     store.user = response.user;
+     return store.user;
+   })
    .then(ui.signInSuccess)
    .catch(ui.failure);
 };
@@ -55,7 +55,7 @@ const onSignOut = function (event) {
       delete store.user;
       return store;
     })
-    .then(ui.success)
+    .then(ui.signOutSuccess)
     .catch(ui.failure);
     return $('#winMessage').text('So long, come back again. =)');
 };

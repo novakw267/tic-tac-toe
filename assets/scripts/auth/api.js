@@ -10,7 +10,6 @@ const signUp = function (data) {
     method: 'POST',
     data,
   });
-
 };
 
 const signIn = function (data) {
@@ -19,7 +18,6 @@ const signIn = function (data) {
       method: 'POST',
       data,
     });
-
   };
 
 const changePassword = function (data) {

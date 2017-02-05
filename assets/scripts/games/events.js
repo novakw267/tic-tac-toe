@@ -60,9 +60,9 @@ const onGetGames = function (event) {
 // };
 //
 const onUpdateGames = function(event){
-  event.preventDefault();
+  // event.preventDefault();
 
-  let data = getFormFields(event.target);
+  // let data = getFormFields(event.target);
   api.update(data.games.id, data)
     .then(ui.onPatchSuccess)
     .catch(ui.onError);
