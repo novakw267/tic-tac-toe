@@ -120,12 +120,24 @@ const yourMove = function (move) {
   } else if (currentPlayer === 'X') {
     currentPlayer = 'O';
   }
-   console.log(store.game.id);
-  api.update(store.game.id, event.target.id, currentPlayer, true)
+    board[move] = currentPlayer;
+};
+
+  const patch = function() {
+    let data = {
+     game: {
+     cell: {
+     index: event.target.id,// this represents the square that was clicked on.
+     value: currentPlayer,
+     },
+     over: true,
+   },
+ };
+  api.update(data)//this is getting passed the object, and the update function,
+  //is recieving the object through this.
     .then(ui.onPatchSuccess)
     .catch(ui.onError);
   // and adds the current players piece to the board array
-  board[move] = currentPlayer;
 };
 
 // This will go through the current ideration of
@@ -167,6 +179,7 @@ const game = function (event) {
     boardFull();// detects to see if the board is full
     winnerIs();// checks for a winner
     getWinner();// displays the winner!
+    patch();
 
   // if the already won then print the message to tell the game is already won
   } else {

@@ -33,22 +33,21 @@ const show = function (id) {
   });
 };
 
-const update = function (id, gameIndex, player, getWinner) {
+const update = function (data) {
   return $.ajax({
-    url: `${config.apiOrigin}/games/${store.user.id}`,
+    url: `${config.apiOrigin}/games/${store.game.id}`,
     method: 'PATCH',
     headers: {
       Authorization: `Token token=${store.user.token}`,
     },
-    data: {
-      "game": {
-        "cell": {
-          "index": gameIndex,
-          "value": player,
-        },
-        "over": getWinner,
-      },
-    },
+    data
+      // game: {
+      //   cell: {
+      //     index: gameIndex,
+      //     value: player,
+      //   },
+      //   over: getWinner,
+      // },
   });
 };
 
