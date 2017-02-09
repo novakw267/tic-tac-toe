@@ -22,7 +22,6 @@ const signInSuccess = (data) => {
   // unhide forms we want
   $("#change-password").removeClass("hidden");
   $("#sign-out").removeClass("hidden");
-  $("#game-board").removeClass("hidden");
   $("#play-again").removeClass("hidden");
   $("#games-played").removeClass("hidden");
   // hide forms we want
