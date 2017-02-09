@@ -159,10 +159,11 @@ const printBoard = function () {
 // It looks to see if the board has anything in its index. If it does it will
 // clear the board. However if there is nothing on the board, it will do nothing
 const resetGameBoard = function () {
+  currentPlayer = 'O';// resets the currentPlayer for each new game
   for (let i = 0; i < board.length; i++) {
     board[i] = '';
     $('#' + i).text(''); // + combines the two strings
-    $('.message').text('');
+    $('.message').text('');//clears the message on that part of the board
   }
   return events.onCreateGame();
 };
