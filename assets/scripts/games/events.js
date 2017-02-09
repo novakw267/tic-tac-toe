@@ -3,7 +3,8 @@
 const api = require('./api.js');
 const ui = require('./ui.js');
 const store = require('../store.js');
-// attach getFormFields globally
+// const engine = require('../game.js');
+ // attach getFormFields globally
 
 const getFormFields = require('../../.././lib/get-form-fields');
 
@@ -13,33 +14,35 @@ const getFormFields = require('../../.././lib/get-form-fields');
 // beginning with 'on' to denote that it is done when the GET /books
 // button is clicked
 
-const onCreateGame = function(event) {
+const onCreateGame = function() {
   event.preventDefault();
 
-  let data = getFormFields(event.target);
-  api.create(data)
+  // let data = getFormFields(event.target);
+  api.create()
     .then((response) => {
       store.game = response.game;
-    })
-    .then(ui.onPostSuccess)
-    .catch(ui.onError);
+    });
+    // .then(ui.onPostSuccess)
+    // .catch(ui.onError);
+    // console.log('boo');
 };
 
-const onGetGames = function (event) {
-  event.preventDefault();
-  let data = getFormFields(event.target);
-
-  if (data.games.id.length === 0){
-      api.index()
-      .then(ui.onSuccess)
-      .catch(ui.onError);
-  } else {
-    api.show(data.games.id)
-      .then(ui.onSuccess)
-      .catch(ui.onError);
-  }
-
-};
+// The idea of this function is the show games played by the user.
+// const onGetGames = function (event) {
+//   event.preventDefault();
+//   // let data = getFormFields(event.target);
+//
+//   if (store.games.id.length === 0){
+//       api.index()
+//       .then(ui.onSuccess)
+//       .catch(ui.onError);
+//   } else {
+//     api.show(store.games.id)
+//       .then(ui.onSuccess)
+//       .catch(ui.onError);
+//   }
+//   // console.log(data);
+// };
 
 // const onUpdateGames = function (event) {
 //   event.preventDefault();
@@ -59,27 +62,28 @@ const onGetGames = function (event) {
 //     .catch(ui.onError);
 // };
 //
-const onUpdateGames = function(event){
-  // event.preventDefault();
+// const onUpdateGames = function(event){
+//   // event.preventDefault();
+//
+//   // let data = getFormFields(event.target);
+//
+//   api.update(store.game.id, event.target.id, engine.currentPlayer, engine.getWinner)
+//     .then(ui.onPatchSuccess)
+//     .catch(ui.onError);
+// };
 
-  // let data = getFormFields(event.target);
-  api.update(data.games.id, data)
-    .then(ui.onPatchSuccess)
-    .catch(ui.onError);
-};
 
 
-
-const addHandlers = () => {
-  $('#search-submit').on('submit', onGetGames);
-  // $('#search-submit').on('submit', onUpdateGames);
-
-};
+// const addHandlers = () => {
+//   // $('#search-submit').on('submit', onGetGames);
+//   $('#search-submit').on('submit', onUpdateGames);
+//
+// };
 
 module.exports = {
   onCreateGame,
-  onGetGames,
-  addHandlers,
+  // onGetGames,
+  // addHandlers,
   // onDeleteGames,
-  onUpdateGames,
+  // onUpdateGames,
 };

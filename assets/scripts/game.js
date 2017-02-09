@@ -1,6 +1,8 @@
 'use strict';
-
-require('./games/events.js');
+const api = require('./games/api');
+const ui = require('./games/ui');
+const events = require('./games/events.js');
+const store =  require('./store');
 // Declaring the starting board
 let board = ['', '', '',
                '', '', '',
@@ -34,25 +36,6 @@ const boardFull = function () {
 const player1 = 'X';
 const player2 = 'O';
 let currentPlayer = 'O';
-
-// function name: yourMove
-// parameters: move represents a number of 0-8
-// purpose: accepts a position on the board which is a number 0-8
-const yourMove = function (move) {
-  // and checks if there is a value in that position
-  if (board[move] !== '') {
-    // if there is it logs please try again/
-    return $('#winMessage').text('Please try again!');
-  // if current player is O change it to X
-  } else if (currentPlayer === 'O') {
-    currentPlayer = 'X';
-  // if current is X change to O
-  } else if (currentPlayer === 'X') {
-    currentPlayer = 'O';
-  }
-  // and adds the current players piece to the board array
-  board[move] = currentPlayer;
-};
 
 // threeInARow is declaring what the win function will be looking for
 // It wants to find that there are three cells in a row occupied
@@ -122,6 +105,29 @@ const getWinner = function () {
 
 };
 
+// function name: yourMove
+// parameters: move represents a number of 0-8
+// purpose: accepts a position on the board which is a number 0-8
+const yourMove = function (move) {
+  // and checks if there is a value in that position
+  if (board[move] !== '') {
+    // if there is it logs please try again/
+    return $('#winMessage').text('Please try again!');
+  // if current player is O change it to X
+  } else if (currentPlayer === 'O') {
+    currentPlayer = 'X';
+  // if current is X change to O
+  } else if (currentPlayer === 'X') {
+    currentPlayer = 'O';
+  }
+   console.log(store.game.id);
+  api.update(store.game.id, event.target.id, currentPlayer, true)
+    .then(ui.onPatchSuccess)
+    .catch(ui.onError);
+  // and adds the current players piece to the board array
+  board[move] = currentPlayer;
+};
+
 // This will go through the current ideration of
  // the board index, and see if the spot clicked on is full
 // if that is the case, the game will display try again
@@ -146,6 +152,7 @@ const resetGameBoard = function () {
     $('#' + i).text(''); // + combines the two strings
     $('.message').text('');
   }
+  return events.onCreateGame();
 };
 
 // This is the function the sets the order of operations for the whole game.
@@ -167,7 +174,6 @@ const game = function (event) {
   }
   // event.onUpdateGames();
 };
-
 // const gamesPlayed = function () {
 //
 // };
@@ -176,6 +182,7 @@ const game = function (event) {
 const handler = function () {
   $('.box').on('click', game);
 };
+
 
 module.exports = {
   board,

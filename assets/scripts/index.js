@@ -38,7 +38,7 @@ const games = require('./games/events');
 $(() => {
   authEvents.addHandlers();
   game.handler();
-  games.addHandlers();
+  // games.addHandlers();
   $('#game-search').on('submit', games.onGetGames);
-  $('.new-game').on('click', games.onCreateGame);
+  // $('.new-game').on('click', games.resetGameBoard);
 });

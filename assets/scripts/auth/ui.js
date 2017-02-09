@@ -7,12 +7,17 @@ const success = (data) => {
 };
 
 // data object is
-// {
-//   user: {
+// data = {
 //        email: "users email",
 //        id: 232
 //      }
-// }
+// };
+
+const signUpSuccess = function () {
+  $("#sign-up").addClass("hidden");
+  $("#sign-up")[0].reset();
+};
+
 const signInSuccess = (data) => {
   // unhide forms we want
   $("#change-password").removeClass("hidden");
@@ -25,6 +30,7 @@ const signInSuccess = (data) => {
   $("#sign-up").addClass("hidden");
   $("#sign-in").addClass("hidden");
   $('#winMessage').text(data.email + ' has signed in, play some Tic Tac Toe!');
+  $('#sign-in')[0].reset();
 };
 
 const signOutSuccess = () => {
@@ -44,6 +50,7 @@ const failure = (error) => {
 module.exports = {
   failure,
   success,
+  signUpSuccess,
   signInSuccess,
-  signOutSuccess
+  signOutSuccess,
 };

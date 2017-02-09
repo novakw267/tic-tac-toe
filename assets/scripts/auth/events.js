@@ -9,6 +9,8 @@ const store = require('../store');
 
 const game = require('../game.js');
 
+const storage = require('../games/events.js');
+
 const onSignUp = function (event) {
   event.preventDefault();
 
@@ -60,12 +62,12 @@ const onSignOut = function (event) {
     return $('#winMessage').text('So long, come back again. =)');
 };
 
-$('#play-again').on('click', () => {
-  game.resetGameBoard();
-});
+// $('#play-again').on('click', () => {
+//   game.resetGameBoard();
+// });
 
 $('#games-played').on('click', () =>{
-  game.gamesPlayed();
+  storage.onGetGames();
 });
 
 const addHandlers = () => {
