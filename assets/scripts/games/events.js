@@ -3,10 +3,6 @@
 const api = require('./api.js');
 const ui = require('./ui.js');
 const store = require('../store.js');
-// const engine = require('../game.js');
- // attach getFormFields globally
-
-const getFormFields = require('../../.././lib/get-form-fields');
 
 // get in the habit of naming your handlers, it eases debugging.
 //
@@ -22,28 +18,16 @@ const onCreateGame = function() {
     .then((response) => {
       store.game = response.game;
     });
-    // .then(ui.onPostSuccess)
-    // .catch(ui.onError);
-    // console.log('boo');
 };
 
 // The idea of this function is the show games played by the user.
-const onGetGames = function (data) {
+const onGetGames = function () {
   event.preventDefault();
   // let data = getFormFields(event.target);
 
       api.index(store.game.id)
       .then(ui.onSuccess)
       .catch(ui.onError);
-  // if (store.game.id.length ){
-  console.log('Data result is: ' + JSON.stringify(data));
-
-  console.log(data + ' at events.js onGetGames');
-    api.show(store.game.id)
-      .then(ui.onSuccess)
-      .catch(ui.onError);
-      $('#winMessage').text(data.email + ' has played ' + store.game.id.length + ' games!');
-
 };
 
 // const onUpdateGames = function (event) {

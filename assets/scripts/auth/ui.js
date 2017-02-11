@@ -27,7 +27,6 @@ const signInSuccess = (data) => {
   $("#change-password").removeClass("hidden");
   $("#sign-out").removeClass("hidden");
   $("#play-again").removeClass("hidden");
-  $("#games-played").removeClass("hidden");
   console.log("i sohuld tun once");
   $('#games-played').on('click', (event) =>{
     event.preventDefault();
