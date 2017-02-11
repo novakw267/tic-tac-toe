@@ -41,13 +41,6 @@ const update = function (data) {
       Authorization: `Token token=${store.user.token}`,
     },
     data
-      // game: {
-      //   cell: {
-      //     index: gameIndex,
-      //     value: player,
-      //   },
-      //   over: getWinner,
-      // },
   });
 };
 

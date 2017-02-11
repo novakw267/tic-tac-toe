@@ -24,7 +24,6 @@ $(() => {
 
 const authEvents = require('./auth/events.js');
 const game = require('./game.js');
-const games = require('./games/events.js');
 
 
 //$('col-xs-4 box').on('click', (event) => {

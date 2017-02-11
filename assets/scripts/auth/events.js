@@ -9,7 +9,7 @@ const store = require('../store');
 
 const game = require('../game.js');
 
-const storage = require('../games/events.js');
+
 
 const onSignUp = function (event) {
   event.preventDefault();
@@ -19,7 +19,6 @@ const onSignUp = function (event) {
   api.signUp(data)
     .then(ui.success)
     .catch(ui.failure);
-      return $('#winMessage').text('Congradulations on signing up!');
 };
 
 const onSignIn = function (event) {
