@@ -9,7 +9,7 @@ const store = require('../store');
 
 const game = require('../game.js');
 
-const onSignUp = function (event) {
+const onSignUp = function(event) {
   event.preventDefault();
 
   let data = getFormFields(event.target);
@@ -19,32 +19,35 @@ const onSignUp = function (event) {
     .catch(ui.failure);
 };
 
-const onSignIn = function (event) {
-   event.preventDefault();
-
- let data = getFormFields(event.target);
-
- api.signIn(data)
-   .then((response) => {
-     store.user = response.user;
-     return store.user;
-   })
-   .then(ui.success)
-   .catch(ui.failure);
-};
-
-const onChangePassword = function (event) {
+const onSignIn = function(event) {
   event.preventDefault();
 
   let data = getFormFields(event.target);
-  console.log(data);
+
+  api.signIn(data)
+
+    // can only have 1 .then
+
+    .then((response) => {
+      store.user = response.user;
+      return store.user;
+    })
+    .then(ui.signInSuccess)
+    .catch(ui.failure);
+};
+
+const onChangePassword = function(event) {
+  event.preventDefault();
+
+  let data = getFormFields(event.target);
 
   api.changePassword(data)
     .then(ui.success)
     .catch(ui.failure);
+  return $('#winMessage').text('Changing your password? You smartie pants.');
 };
 
-const onSignOut = function (event) {
+const onSignOut = function(event) {
   event.preventDefault();
 
   api.signOut()
@@ -52,18 +55,10 @@ const onSignOut = function (event) {
       delete store.user;
       return store;
     })
-    .then(ui.success)
-    .catch(ui.failure)
-    ;
+    .then(ui.signOutSuccess)
+    .catch(ui.failure);
+  return $('#winMessage').text('So long, come back again. =)');
 };
-
-$('#play-again').on('click', () => {
-  game.resetGameBoard();
-});
-
-$('#games-played').on('click', () =>{
-  game.gamesPlayed();
-});
 
 const addHandlers = () => {
   $('#sign-up').on('submit', onSignUp);

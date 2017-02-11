@@ -3,9 +3,6 @@
 const api = require('./api.js');
 const ui = require('./ui.js');
 const store = require('../store.js');
-// attach getFormFields globally
-
-const getFormFields = require('../../.././lib/get-form-fields');
 
 // get in the habit of naming your handlers, it eases debugging.
 //
@@ -13,32 +10,23 @@ const getFormFields = require('../../.././lib/get-form-fields');
 // beginning with 'on' to denote that it is done when the GET /books
 // button is clicked
 
-const onCreateGame = function(event) {
+// This function stores the game that is created when the new game button is pushed.
+const onCreateGame = function() {
   event.preventDefault();
 
-  let data = getFormFields(event.target);
-  api.create(data)
+  api.create()
     .then((response) => {
       store.game = response.game;
-    })
-    .then(ui.onPostSuccess)
-    .catch(ui.onError);
+    });
 };
 
-const onGetGames = function (event) {
+// The idea of this function is the show the number of games played by the user.
+const onGetGames = function() {
   event.preventDefault();
-  let data = getFormFields(event.target);
 
-  if (data.games.id.length === 0){
-      api.index()
-      .then(ui.onSuccess)
-      .catch(ui.onError);
-  } else {
-    api.show(data.games.id)
-      .then(ui.onSuccess)
-      .catch(ui.onError);
-  }
-
+  api.index(store.game.id)
+    .then(ui.onSuccess)
+    .catch(ui.onError);
 };
 
 const onUpdateGames = function (event) {
@@ -77,6 +65,4 @@ module.exports = {
   onCreateGame,
   onGetGames,
   addHandlers,
-  // onDeleteGames,
-  // onPatchGames,
 };
