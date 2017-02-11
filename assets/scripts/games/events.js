@@ -28,21 +28,23 @@ const onCreateGame = function() {
 };
 
 // The idea of this function is the show games played by the user.
-// const onGetGames = function (event) {
-//   event.preventDefault();
-//   // let data = getFormFields(event.target);
-//
-//   if (store.games.id.length === 0){
-//       api.index()
-//       .then(ui.onSuccess)
-//       .catch(ui.onError);
-//   } else {
-//     api.show(store.games.id)
-//       .then(ui.onSuccess)
-//       .catch(ui.onError);
-//   }
-//   // console.log(data);
-// };
+const onGetGames = function (data) {
+  event.preventDefault();
+  // let data = getFormFields(event.target);
+
+      api.index(store.game.id)
+      .then(ui.onSuccess)
+      .catch(ui.onError);
+  // if (store.game.id.length ){
+  console.log('Data result is: ' + JSON.stringify(data));
+
+  console.log(data + ' at events.js onGetGames');
+    api.show(store.game.id)
+      .then(ui.onSuccess)
+      .catch(ui.onError);
+      $('#winMessage').text(data.email + ' has played ' + store.game.id.length + ' games!');
+
+};
 
 // const onUpdateGames = function (event) {
 //   event.preventDefault();
@@ -74,16 +76,16 @@ const onCreateGame = function() {
 
 
 
-// const addHandlers = () => {
-//   // $('#search-submit').on('submit', onGetGames);
+const addHandlers = () => {
+  $('#search-submit').on('submit', onGetGames);
 //   $('#search-submit').on('submit', onUpdateGames);
 //
-// };
+};
 
 module.exports = {
   onCreateGame,
-  // onGetGames,
-  // addHandlers,
+  onGetGames,
+  addHandlers,
   // onDeleteGames,
   // onUpdateGames,
 };

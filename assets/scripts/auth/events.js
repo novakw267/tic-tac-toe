@@ -19,16 +19,18 @@ const onSignUp = function (event) {
   api.signUp(data)
     .then(ui.success)
     .catch(ui.failure);
-    return $('#winMessage').text('Congradulations on signing up!');
+      return $('#winMessage').text('Congradulations on signing up!');
 };
 
 const onSignIn = function (event) {
-   event.preventDefault();
+    event.preventDefault();
 
- let data = getFormFields(event.target);
+    let data = getFormFields(event.target);
 
- api.signIn(data)
+    api.signIn(data)
+
   // can only have 1 .then
+
    .then((response) => {
      store.user = response.user;
      return store.user;
@@ -66,9 +68,9 @@ const onSignOut = function (event) {
 //   game.resetGameBoard();
 // });
 
-$('#games-played').on('click', () =>{
-  storage.onGetGames();
-});
+// $('#games-played').on('click', () =>{
+//   storage.onGetGames();
+// });
 
 const addHandlers = () => {
   $('#sign-up').on('submit', onSignUp);

@@ -24,7 +24,7 @@ $(() => {
 
 const authEvents = require('./auth/events.js');
 const game = require('./game.js');
-const games = require('./games/events');
+const games = require('./games/events.js');
 
 
 //$('col-xs-4 box').on('click', (event) => {
@@ -39,6 +39,5 @@ $(() => {
   authEvents.addHandlers();
   game.handler();
   // games.addHandlers();
-  $('#game-search').on('submit', games.onGetGames);
   // $('.new-game').on('click', games.resetGameBoard);
 });

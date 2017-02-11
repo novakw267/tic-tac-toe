@@ -2,7 +2,7 @@
 const api = require('./games/api');
 const ui = require('./games/ui');
 const events = require('./games/events.js');
-const store =  require('./store');
+
 // Declaring the starting board
 let board = ['', '', '',
                '', '', '',
@@ -125,7 +125,7 @@ const yourMove = function (move) {
 
   const patch = function() {
     let data = {
-     game: {
+     games: {
      cell: {
      index: event.target.id,// this represents the square that was clicked on.
      value: currentPlayer,

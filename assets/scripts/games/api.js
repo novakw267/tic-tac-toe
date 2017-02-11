@@ -23,9 +23,9 @@ const index = function () {
   });
 };
 
-const show = function (id) {
+const show = function () {
   return $.ajax({
-    url: config.apiOrigin + '/games/' + id,
+    url: config.apiOrigin + '/games/' + store.game.id,
     method: 'GET',
     headers: {
       Authorization: `Token token=${store.user.token}`,
