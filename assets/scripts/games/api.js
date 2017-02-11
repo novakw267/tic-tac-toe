@@ -3,7 +3,7 @@
 const config = require('../config.js');
 const store = require('../store');
 
-const create = function () {
+const create = function() {
   return $.ajax({
     url: config.apiOrigin + '/games',
     method: 'POST',
@@ -13,7 +13,7 @@ const create = function () {
   });
 };
 
-const index = function () {
+const index = function() {
   return $.ajax({
     url: config.apiOrigin + '/games',
     method: 'GET',
@@ -23,7 +23,7 @@ const index = function () {
   });
 };
 
-const show = function () {
+const show = function() {
   return $.ajax({
     url: config.apiOrigin + '/games/' + store.game.id,
     method: 'GET',
@@ -33,7 +33,7 @@ const show = function () {
   });
 };
 
-const update = function (data) {
+const update = function(data) {
   return $.ajax({
     url: `${config.apiOrigin}/games/${store.game.id}`,
     method: 'PATCH',
