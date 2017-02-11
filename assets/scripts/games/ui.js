@@ -4,7 +4,7 @@ const onSuccess = function (data) {
 //  debugger;
   if (data.games) {
     $('#winMessage').text('You have played ' + data.games.length + ' games!');
-    console.log(data.games);
+    // console.log(data.games);
   } else {
     console.table(data.games);
   }

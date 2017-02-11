@@ -10,17 +10,17 @@ const store = require('../store.js');
 // beginning with 'on' to denote that it is done when the GET /books
 // button is clicked
 
+// This function stores the game that is created when the new game button is pushed.
 const onCreateGame = function() {
   event.preventDefault();
 
-  // let data = getFormFields(event.target);
   api.create()
     .then((response) => {
       store.game = response.game;
     });
 };
 
-// The idea of this function is the show games played by the user.
+// The idea of this function is the show the number of games played by the user.
 const onGetGames = function () {
   event.preventDefault();
   // let data = getFormFields(event.target);

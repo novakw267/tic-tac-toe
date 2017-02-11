@@ -125,7 +125,7 @@ const yourMove = function (move) {
 
   const patch = function() {
     let data = {
-     games: {
+     game: {
      cell: {
      index: event.target.id,// this represents the square that was clicked on.
      value: currentPlayer,
@@ -159,8 +159,8 @@ const printBoard = function () {
 // It looks to see if the board has anything in its index. If it does it will
 // clear the board. However if there is nothing on the board, it will do nothing
 const resetGameBoard = function () {
-  $("#games-played").removeClass("hidden");
   $("#game-board").removeClass("hidden");
+  $('#games-played').removeClass("hidden");
   currentPlayer = 'O';// resets the currentPlayer for each new game
   for (let i = 0; i < board.length; i++) {
     board[i] = '';
