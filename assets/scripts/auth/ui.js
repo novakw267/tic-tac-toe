@@ -3,6 +3,7 @@
 const success = (data) => {
   if (data) {
     $('#winMessage').text('Congradulations on signing up!');
+    $('#sign-up')[0].reset();
   }
 };
 
