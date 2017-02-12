@@ -12,9 +12,6 @@ const signInSuccess = (data) => {
   $('#sign-out').removeClass('hidden');
   $('#play-again').removeClass('hidden');
   $('#winMessage').text(data.email + ' has signed in, hit New Game to start playing!');
-  // $('#games-played').on('click', () => {
-  //   storage.onGetGames(data);
- // });
 
 
   // hide forms we want
@@ -25,11 +22,13 @@ const signInSuccess = (data) => {
   $('#sign-up')[0].reset();
 };
 
+//displays a message and clears on a successful change password
 const changePwSuccess = () => {
   $('#winMessage').text('Changing your password? You smartie pants.');
   $('#change-password')[0].reset();
 };
 
+//change back to how it looked before you signed in.
 const signOutSuccess = () => {
   $('#change-password').addClass('hidden');
   $('#sign-out').addClass('hidden');
