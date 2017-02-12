@@ -119,8 +119,6 @@ const yourMove = function(move) {
   // and checks if there is a value in that position
 
   if (board[move] !== '') {
-
-    // if there is it logs please try again/
     return $('#winMessage').text('Please try again!');
     // if current player is O change it to X
   } else if (currentPlayer === 'O') {
