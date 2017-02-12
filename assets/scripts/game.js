@@ -127,14 +127,14 @@ const yourMove = function(move) {
 
   } else if (currentPlayer === 'O') {
     currentPlayer = 'X';
-    return $('#winMessage').text('');
+
     // if current is X change to O
 
   } else if (currentPlayer === 'X') {
     currentPlayer = 'O';
-    return $('#winMessage').text('');
   }
   board[move] = currentPlayer;
+  return $('#winMessage').text('');
 };
 
 //This selects the data that is stored from update games
