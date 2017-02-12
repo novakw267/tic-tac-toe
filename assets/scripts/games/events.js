@@ -22,19 +22,14 @@ const onCreateGame = function() {
 
 // The idea of this function is the show the number of games played by the user.
 const onGetGames = function() {
-  event.preventDefault();
 
   api.index(store.game.id)
     .then(ui.onSuccess)
     .catch(ui.onError);
 };
 
-const addHandlers = () => {
-  $('#search-submit').on('submit', onGetGames);
-};
-
 module.exports = {
   onCreateGame,
   onGetGames,
-  addHandlers,
+  // addHandlers,
 };
