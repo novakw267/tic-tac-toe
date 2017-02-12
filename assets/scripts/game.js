@@ -82,7 +82,7 @@ const winColumn = function(currentPlayer) {
 const winDiag = function(currentPlayer) {
   if (threeInARow(currentPlayer, board[0], board[4], board[8]) ||
     threeInARow(currentPlayer, board[2], board[4], board[6])) {
-    return $('#winMessage').text(currentPlayer + ' you won!');
+    return $('#winMessage').text(currentPlayer + ' you won! Feel free to start over, by hitting Play Again.');
   }
 
 };
