@@ -30,6 +30,4 @@ const game = require('./game.js');
 $(() => {
   authEvents.addHandlers();
   game.handler();
-  // games.addHandlers();
-  // $('.new-game').on('click', games.resetGameBoard);
 });

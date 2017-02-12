@@ -122,7 +122,7 @@ const yourMove = function(move) {
 
     // if there is it logs please try again/
 
-    return $('#winMessage').text('Please try again!');
+  return $('#winMessage').text('Please try again!');
     // if current player is O change it to X
 
   } else if (currentPlayer === 'O') {
@@ -134,6 +134,7 @@ const yourMove = function(move) {
     currentPlayer = 'O';
   }
   board[move] = currentPlayer;
+  return $('#winMessage').text('');
 };
 
 const patch = function() {
@@ -206,6 +207,7 @@ const game = function(event) {
 // click handler for clicking on the board.
 const handler = function(data) {
   $('.box').on('click', game);
+  $('#winMessage').text('Please try again!');
   $('#games-played').on('click', () => {
     events.onGetGames(data);
   });
