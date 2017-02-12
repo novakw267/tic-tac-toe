@@ -1,6 +1,6 @@
 https://novakw267.github.io/tic-tac-toe/
 
-# List of technologies
+# List of Technologies
 - my computer
 - google
 - previous repos
@@ -11,7 +11,7 @@ https://novakw267.github.io/tic-tac-toe/
 - jquery
 - ajax
 
-# Planing
+# Planning
 To start off I began with a rough wireframe in order to dictate what I wanted to attempt to contain. It ended up at least for the moment looking nothing like I had imagined. I plan to style it more in the future.
 
 After which I focused on designing the engine and testing that in node. I knew the visual structure would take less time, and I am glad I went in that route. The engine proved to be difficult, but once I had some basic structure it became easier to decide my next move.
