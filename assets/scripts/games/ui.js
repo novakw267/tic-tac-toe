@@ -8,12 +8,6 @@ const onSuccess = function(data) {
 const onIndexSuccess = function() {
 };
 
-// const onGetSuccess = function(data) {
-//   if (data.games) {
-//     // $('#search-result').text(data.game.cells);
-//   }
-// };
-
 const onError = function() {};
 
 const onPostSuccess = function() {};

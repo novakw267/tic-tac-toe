@@ -13,9 +13,9 @@ const signInSuccess = (data) => {
   $('#sign-out').removeClass('hidden');
   $('#play-again').removeClass('hidden');
   $('#winMessage').text(data.email + ' has signed in, hit New Game to start playing!');
-  $('#games-played').on('click', () => {
-    storage.onGetGames(data);
-  });
+  // $('#games-played').on('click', () => {
+  //   storage.onGetGames(data);
+ // });
 
 
   // hide forms we want
@@ -24,6 +24,11 @@ const signInSuccess = (data) => {
   $('#sign-in').addClass('hidden');
   $('#sign-in')[0].reset();
   $('#sign-up')[0].reset();
+};
+
+const changePwSuccess = () => {
+  $('#winMessage').text('Changing your password? You smartie pants.');
+  $('#change-password')[0].reset();
 };
 
 const signOutSuccess = () => {
@@ -37,6 +42,7 @@ const signOutSuccess = () => {
 };
 
 const failure = () => {
+  $('#change-password')[0].reset();
   return $('#winMessage').text('Try again, something went wrong.');
 };
 
@@ -45,4 +51,5 @@ module.exports = {
   success,
   signInSuccess,
   signOutSuccess,
+  changePwSuccess
 };

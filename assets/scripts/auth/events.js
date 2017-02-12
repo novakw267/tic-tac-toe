@@ -42,7 +42,7 @@ const onChangePassword = function(event) {
   let data = getFormFields(event.target);
 
   api.changePassword(data)
-    .then(ui.success)
+    .then(ui.changePwSuccess)
     .catch(ui.failure);
   // return $('#winMessage').text('Changing your password? You smartie pants.');
 };

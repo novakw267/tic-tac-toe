@@ -23,7 +23,7 @@ const onCreateGame = function() {
 // The idea of this function is the show the number of games played by the user.
 const onGetGames = function() {
 
-  api.index(store.game.id)
+  api.index()
     .then(ui.onSuccess)
     .catch(ui.onError);
 };
