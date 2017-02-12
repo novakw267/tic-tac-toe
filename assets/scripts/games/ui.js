@@ -2,20 +2,10 @@
 
 const onSuccess = function(data) {
   //  debugger;
-  if (data.games) {
-    $('#winMessage').text('You have played ' + data.games.length + ' games!');
-    // console.log(data.games);
-  } else {}
+  $('#winMessage').text('You have played ' + data.games.length + ' games!');
 };
 
-const onIndexSuccess = function(data) {
-  if (data.game) {} else {}
-};
-
-const onGetSuccess = function(data) {
-  if (data.games) {
-    $('#search-result').text(data.game.cells);
-  }
+const onIndexSuccess = function() {
 };
 
 const onError = function() {};
@@ -29,6 +19,6 @@ module.exports = {
   onError,
   onPostSuccess,
   onPatchSuccess,
-  onGetSuccess,
+  // onGetSuccess,
   onIndexSuccess,
 };

@@ -42,9 +42,9 @@ const onChangePassword = function(event) {
   let data = getFormFields(event.target);
 
   api.changePassword(data)
-    .then(ui.success)
+    .then(ui.changePwSuccess)
     .catch(ui.failure);
-  return $('#winMessage').text('Changing your password? You smartie pants.');
+  // return $('#winMessage').text('Changing your password? You smartie pants.');
 };
 
 const onSignOut = function(event) {
@@ -52,12 +52,17 @@ const onSignOut = function(event) {
 
   api.signOut()
     .then(() => {
-      delete store.user;
+      delete store.user.id;
+      $('#winMessage').text('So long, come back again. =)');
+      $('#change-password').addClass('hidden');
+      $('#sign-out').addClass('hidden');
+      $('#game-board').addClass('hidden');
+      $('#play-again').addClass('hidden');
+      $('#games-played').addClass('hidden');
+      $('#sign-up').removeClass('hidden');
+      $('#sign-in').removeClass('hidden');
       return store;
-    })
-    .then(ui.signOutSuccess)
-    .catch(ui.failure);
-  return $('#winMessage').text('So long, come back again. =)');
+    });
 };
 
 const addHandlers = () => {

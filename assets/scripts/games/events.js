@@ -22,47 +22,14 @@ const onCreateGame = function() {
 
 // The idea of this function is the show the number of games played by the user.
 const onGetGames = function() {
-  event.preventDefault();
 
-  api.index(store.game.id)
+  api.index()
     .then(ui.onSuccess)
     .catch(ui.onError);
-};
-
-const onUpdateGames = function (event) {
-  event.preventDefault();
-
-  let data = getFormFields(event.target);
-  api.patch(data.gameIndex.player.gameOver);
-};
-
-
-
-
-// const onDeleteGames = function(event){
-//   event.preventDefault();
-//
-//   let data = getFormFields(event.target);
-//   api.destroy(data.games.id)
-//     .then(ui.onDeleteSuccess)
-//     .catch(ui.onError);
-// };
-//
-// const onPatchGames = function(event){
-//   event.preventDefault();
-//
-//   let data = getFormFields(event.target);
-//   api.patch(data.games.id, data)
-//     .then(ui.onPatchSuccess)
-//     .catch(ui.onError);
-// };
-
-const addHandlers = () => {
-  $('#search-submit').on('submit', onGetGames);
 };
 
 module.exports = {
   onCreateGame,
   onGetGames,
-  addHandlers,
+  // addHandlers,
 };

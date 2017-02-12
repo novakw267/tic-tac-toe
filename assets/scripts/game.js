@@ -201,15 +201,14 @@ const game = function(event) {
   } else {
     $('#winMessage').text('Game is already over');
   }
-  // event.onUpdateGames();
 };
-// const gamesPlayed = function () {
-//
-// };
 
 // click handler for clicking on the board.
-const handler = function() {
+const handler = function(data) {
   $('.box').on('click', game);
+  $('#games-played').on('click', () => {
+    events.onGetGames(data);
+  });
 };
 
 
